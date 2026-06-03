@@ -1,0 +1,368 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:cursive;
+  background-image:url(/src/assets/images/icons/Background-image.jpg);
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  min-height:100vh;
+  overflow-x:hidden;
+  color:white;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+a{
+  text-decoration:none;
+  color:white;
+}
+
+a:hover{
+  color:#fde68a;
+}
+
+/* =========================
+   IMAGES
+========================= */
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+select,
+textarea{
+  width:100%;
+  min-width:0;
+  padding:14px;
+  border:none;
+  outline:none;
+  border-radius:10px;
+  font-size:16px;
+}
+
+/* FIX SMALL PLACEHOLDERS */
+input::placeholder,
+textarea::placeholder{
+  font-size:15px;
+  color:#94a3b8;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+  border:none;
+  outline:none;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:bold;
+}
+
+/* =========================
+   TEXT RESPONSIVE
+========================= */
+
+h1{
+  font-size:clamp(28px,5vw,42px);
+}
+
+h2{
+  font-size:clamp(22px,4vw,34px);
+}
+
+h3{
+  font-size:clamp(18px,3vw,28px);
+}
+
+p,
+span,
+label{
+  font-size:15px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#38bdf8;
+  border-radius:20px;
+}
+
+/* =========================
+   REUSABLE LAYOUTS
+========================= */
+
+.container{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+}
+
+.grid{
+  display:grid;
+  gap:20px;
+}
+
+.row{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.card{
+  width:100%;
+  overflow:hidden;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width:991px){
+
+  body{
+    background-attachment:scroll;
+  }
+
+  .container{
+    padding:18px !important;
+  }
+
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  body{
+    overflow-x:hidden;
+  }
+
+  .container{
+    padding:14px !important;
+  }
+
+  .grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .card,
+  .cardLarge{
+    width:50% !important;
+    padding:18px !important;
+    border-radius:18px !important;
+  }
+
+  button{
+    width:50%;
+    min-height:48px;
+    font-size:15px;
+  }
+
+  input,
+  select,
+  textarea{
+    font-size:16px !important;
+    padding:15px !important;
+    width:100%;
+  }
+
+  /* FIXES TINY INPUTS */
+  .sendBtn,
+  .graphBtn,
+  .copyBnt{
+    width:30%;
+    min-width:30%;
+  }
+
+  
+  
+  .bnt1,
+  .bnt2,
+  .bnt3{
+    width:100%;
+    min-width:100%;
+  }
+
+  /* FIX REFERRAL / GRAPH BOX */
+  .passwordBox,
+  .termsRow,
+  .inputGroup{
+    width:100%;
+  }
+
+  /* FIX SIDEBAR */
+  .sidebar{
+    position:fixed;
+    top:0;
+    left:-100%;
+    width:260px;
+    height:100vh;
+    z-index:999;
+    transition:0.3s;
+  }
+
+  .sidebar.active{
+    left:0;
+  }
+
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width:480px){
+
+  body{
+    padding:0;
+  }
+
+  .container{
+    padding:10px !important;
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+  h2{
+    font-size:20px;
+  }
+
+  h3{
+    font-size:18px;
+  }
+
+  p,
+  span,
+  label{
+    font-size:14px;
+  }
+
+  .card,
+  .cardLarge{
+    padding:15px !important;
+    border-radius:16px !important;
+  }
+
+  input,
+  select,
+  textarea{
+    padding:14px !important;
+    font-size:15px !important;
+  }
+
+  button{
+    padding:14px !important;
+    font-size:15px !important;
+  }
+
+}
+
+
+@keyframes slideIn{
+
+  from{
+    transform:translateX(-100%);
+    opacity:0;
+  }
+
+  to{
+    transform:translateX(0);
+    opacity:1;
+  }
+
+}
+
+
+/*
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: cursive;
+  background-image: url(/src/assets/images/icons/Background-image.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: green;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover{
+  color: rgb(241, 241, 132);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+  */
