@@ -45,6 +45,21 @@ function Register() {
 
  const handleSendEmail = async () => {
 
+  console.log(
+    "SERVICE:",
+    EMAILJS_SERVICE_ID
+  );
+
+  console.log(
+    "TEMPLATE:",
+    EMAILJS_TEMPLATE_ID
+  );
+
+  console.log(
+    "PUBLIC:",
+    EMAILJS_PUBLIC_KEY
+  );
+
   if (!email) {
 
     setAlert({
@@ -62,6 +77,7 @@ function Register() {
 
   setSentOtp(otp);
 
+  /*
   // SAVE OTP TO DATABASE
   await supabase
     .from("email_otps")
@@ -71,6 +87,7 @@ function Register() {
         otp
       }
     ]);
+  */
 
   try {
 
