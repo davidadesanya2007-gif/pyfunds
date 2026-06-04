@@ -54,7 +54,14 @@ function Transactions() {
 
       <Sidebar />
 
-      <div style={{padding:"40px"}}>
+      <div
+        style={{
+          padding:"20px",
+          width:"100%",
+          maxWidth:"1000px",
+          margin:"0 auto"
+        }}
+      >
 
         <h2>Transaction History</h2>
 
@@ -66,7 +73,9 @@ function Transactions() {
             <div key={index} style={styles.card}>
 
               <div style={styles.row}>
-                <span style={styles.type}>{item.type}</span>
+                <span style={styles.type}>
+                  {item.type}
+                </span>
                 <span style={styles.amount}>
                   {item.currency || "₦"}{item.amount}
                 </span>
@@ -76,19 +85,26 @@ function Transactions() {
 
               <p style={styles.date}>{item.date}</p>
 
-              <p style={{
-                marginTop:"8px",
-                color:
-                  item.status === "Approved"
-                  ? "#22c55e"
-                  : item.status === "Rejected"
-                  ? "#ef4444"
-                  : "#facc15",
+              {(
+                item.type?.toUpperCase().includes("DEPOSIT") ||
+                item.type?.toUpperCase().includes("WITHDRAW")
+              ) && (
 
-                fontWeight:"bold"
-              }}>
-                {item.status}
-              </p>
+                <p style={{
+                  marginTop:"8px",
+                  color:
+                    item.status === "Approved"
+                    ? "#22c55e"
+                    : item.status === "Rejected"
+                    ? "#ef4444"
+                    : "#facc15",
+
+                  fontWeight:"bold"
+                }}>
+                  {item.status}
+                </p>
+
+              )}
 
             </div>
 
@@ -104,17 +120,20 @@ function Transactions() {
 const styles = {
 
   card:{
+    width:"100%",
     background:"#fff",
-    padding:"15px",
-    borderRadius:"10px",
+    padding:"20px",
+    borderRadius:"14px",
     marginTop:"15px",
-    boxShadow:"0 4px 6px rgba(0,0,0,0.05)"
+    boxShadow:"0 4px 12px rgba(0,0,0,0.08)"
   },
 
   row:{
     display:"flex",
     justifyContent:"space-between",
-    fontWeight:"bold"
+    alignItems:"center",
+    fontWeight:"bold",
+    gap:"10px"
   },
 
   type:{

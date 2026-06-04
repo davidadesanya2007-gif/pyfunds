@@ -40,20 +40,35 @@ function Navbar() {
 
   return (
     <div style={styles.nav}>
-      <h2 style={{ color: "#38bdf8" }}>PYFUNDS</h2>
+      <h2
+        style={{
+          color:"#38bdf8",
+          margin:0,
+          fontSize:"18px",
+          marginLeft:"60px"
+        }}
+      >
+        PYEFUNDS
+      </h2>
 
       <div style={styles.links}>
 
         {/* ✅ LOGIN PAGE → show REGISTER only */}
         {!user && isLoginPage && (
-          <button onClick={() => navigate("/register")}>
+          <button
+            style={styles.smallBtn}
+            onClick={() => navigate("/register")}
+          >
             Register
           </button>
         )}
 
         {/* ✅ REGISTER PAGE → show LOGIN only */}
         {!user && isRegisterPage && (
-          <button onClick={() => navigate("/login")}>
+          <button
+            style={styles.smallBtn}
+            onClick={() => navigate("/login")}
+          >
             Login
           </button>
         )}
@@ -73,16 +88,34 @@ function Navbar() {
 }
 
 const styles = {
-  nav: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "20px",
-    background: "#020617",
+  nav:{
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"center",
+    padding:"10px 12px",
+    background:"#020617",
+    position:"relative",
+    width:"100%"
   },
-  links: {
-    display: "flex",
-    gap: "15px",
+
+  links:{
+    display:"flex",
+    gap:"5px",
+    marginLeft:"auto",
+    marginRight:"5px"
   },
+
+  smallBtn:{
+    width:"70px",
+    minWidth:"70px",
+    height:"34px",
+    padding:"0",
+    fontSize:"12px",
+    borderRadius:"6px",
+    background:"#38bdf8",
+    color:"#fff",
+    fontWeight:"600"
+  }
 };
 
 export default Navbar;

@@ -58,7 +58,8 @@ function Converter() {
 
       setAlert({
         type:"success",
-        message:`Converted to ${pyeAmount.toFixed(2)} PYE`
+        message:`Converted to ${pyeAmount.toFixed(2)} PYE`,playMoneySound:true
+
       });
 
       setNaira("");
@@ -91,7 +92,8 @@ function Converter() {
 
       setAlert({
         type:"success",
-        message:`Converted to ₦${nairaAmount.toFixed(2)}`
+        message:`Converted to ₦${nairaAmount.toFixed(2)}`,
+        playMoneySound:true
       });
 
       setNaira("");
@@ -145,8 +147,9 @@ function Converter() {
 
         {alert && (
           <CustomAlert
-            message={alert.message}
             type={alert.type}
+            message={alert.message}
+            playMoneySound={alert.playMoneySound}
             onClose={() => setAlert(null)}
           />
         )}

@@ -50,6 +50,8 @@ function ActiveInvestments() {
 
   const handleClaim = async (id) => {
 
+    const user = await getUser(); // ✅ MOVE HERE
+
     let claimed = false;
 
     const updated = await Promise.all(
@@ -73,7 +75,7 @@ function ActiveInvestments() {
         setAlert({
           type: "error",
           message:
-            "You already claimed today's reward, come back tomorrow 9:00 AM!"
+            "You already claimed today's earnings, come back tomorrow 9:00 AM!"
         });
 
         return inv;
@@ -84,7 +86,6 @@ function ActiveInvestments() {
       // 🔥 NEW REFERRAL MACHINE (STACKING SYSTEM)
       if (inv.type === "referral") {
 
-        const user = await getUser();
         const activeUnits =
           (user.referralEarnings || [])
             .filter(e => e.expiry > Date.now())
@@ -114,19 +115,12 @@ function ActiveInvestments() {
         earning =
           Number(inv.dailyEarning || 0);
 
-        // ✅ USER BONUS UNITS
-        const user = await getUser();
+        const hasBonusUnit = Number   (user?.units || 0) > 0;
 
-        if (Number(user.units || 0) > 0) {
-
+        if (hasBonusUnit) {
           earning += 1;
-
-          // REMOVE 1 UNIT
-          user.units =
-            Number(user.units) - 1;
-
+          user.units = Number(user.units) - 1;
           await updateUserEverywhere(user);
-
         }
 
       }
@@ -134,34 +128,26 @@ function ActiveInvestments() {
       // 🔥 NORMAL PRODUCTS
       else {
 
-        // ✅ CHECK MACHINE UNITS
-        if (Number(inv.unitsLeft || 0) <= 0) {
+        const userUnits = Number(user?.units || 0);
+        const machineUnits = Number(inv.unitsLeft || 0);
 
+        // ❌ BLOCK IF BOTH ARE ZERO
+        if (machineUnits <= 0 && userUnits <= 0) {
           setAlert({
-            type:"error",
-            message:"No unit available, go purchase another AI model ❌"
+            type: "error",
+            message: "No units available. Please purchase AI Model first ❌"
           });
 
           return inv;
         }
 
-        earning =
-          Number(inv.dailyEarning) || 0;
+        earning = Number(inv.dailyEarning) || 0;
 
-        // ✅ GET USER
-        const user = await getUser();
-
-        // ✅ USE BONUS UNIT
-        if (Number(user.units || 0) > 0) {
-
+        // ✅ USE BONUS UNIT ONLY IF AVAILABLE
+        if (userUnits > 0) {
           earning += 1;
-
-          // REMOVE 1 USER BONUS UNIT
-          user.units =
-            Number(user.units) - 1;
-
+          user.units = userUnits - 1;
           await updateUserEverywhere(user);
-
         }
 
       }
@@ -182,8 +168,6 @@ function ActiveInvestments() {
       // 🔥 UPDATE USER BALANCE
       user.pyeBalance = newBalance;
       await updateUserEverywhere(user);*/
-
-      const user = await getUser();
 
       const currentBalance =
         Number(user?.pyeBalance || 0);
@@ -286,7 +270,8 @@ function ActiveInvestments() {
     if (claimed) {
       setAlert({
         type: "success",
-        message: "Earnings claimed ✅"
+        message: "Earnings claimed ✅",
+        playMoneySound:true
       });
     }
   };
@@ -312,7 +297,7 @@ function ActiveInvestments() {
           </p>
 
           <p>Invested: {item.price} PYE</p>
-          <p>Earnings: {item.earnings || 0} PYE</p>
+          <p>Earned: {item.earnings || 0} PYE</p>
 
           {item.type === "limited" && (
             <>
@@ -339,8 +324,9 @@ function ActiveInvestments() {
 
       {alert && (
         <CustomAlert
-          message={alert.message}
           type={alert.type}
+          message={alert.message}
+          playMoneySound={alert.playMoneySound}
           onClose={() => setAlert(null)}
         />
       )}

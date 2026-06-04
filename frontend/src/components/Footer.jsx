@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer style={styles.footer}>
-      <p>© 2026 PYFUNDS. All rights reserved.</p>
+      <p>© 2026 PYEFUNDS. All rights reserved.</p>
     </footer>
   );
 }

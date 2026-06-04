@@ -11,12 +11,14 @@ function Sidebar() {
     <div className="sidebar">
 
       {/* MENU BUTTON */}
-      <button
-        onClick={() => setOpen(true)}
-        style={styles.menuBtn}
-      >
-        ☰
-      </button>
+      {!open && (
+        <button
+          onClick={() => setOpen(true)}
+          style={styles.menuBtn}
+        >
+          ☰
+        </button>
+      )}
 
       {/* SIDEBAR */}
       {open && (
@@ -72,7 +74,7 @@ function Sidebar() {
                     : "rgba(255,255,255,0.03)"
                 }}
               >
-                Investment
+                Ai-Models
               </Link>
 
               <Link
@@ -129,34 +131,6 @@ function Sidebar() {
                 }}
               >
                 Transactions
-              </Link>
-
-              <Link
-                to="/leaderboard"
-                onClick={() => setOpen(false)}
-                style={{
-                  ...styles.link,
-                  background:
-                    location.pathname === "/leaderboard"
-                    ? "rgba(56,189,248,0.18)"
-                    : "rgba(255,255,255,0.03)"
-                }}
-              >
-                Leaderboard
-              </Link>
-
-              <Link
-                to="/profile"
-                onClick={() => setOpen(false)}
-                style={{
-                  ...styles.link,
-                  background:
-                    location.pathname === "/profile"
-                    ? "rgba(56,189,248,0.18)"
-                    : "rgba(255,255,255,0.03)"
-                }}
-              >
-                Profile
               </Link>
 
               <Link
@@ -226,7 +200,7 @@ const styles = {
 
   sidebar:{
     position:"fixed",
-    top:"5px",
+    top:"70px",
     left:"5px",
 
     width:"280px",
@@ -250,9 +224,13 @@ const styles = {
   },
 
   closeBtn:{
+    position:"absolute",
+    top:"15px",
+    right:"15px",
+
     width:"42px",
     height:"42px",
-    
+
     borderRadius:"12px",
 
     background:"rgba(239,68,68,0.12)",
@@ -265,15 +243,14 @@ const styles = {
 
     fontWeight:"bold",
 
-    cursor:"pointer",
-
-    marginBottom:"25px"
+    cursor:"pointer"
   },
 
   logo:{
     fontSize:"28px",
     fontWeight:"bold",
     color:"#38bdf8",
+    marginTop:"40px",
     marginBottom:"30px",
     letterSpacing:"1px"
   },

@@ -33,6 +33,8 @@ function EditUserModal({ user, onClose, onSave }) {
           .select("*")
           .eq("user_id", user.id);
 
+      console.log("FRESH FROM DB:", investments);
+
       setMachines(investments || []);
 
       // 🔥 GET TRANSACTIONS
@@ -234,62 +236,79 @@ function EditUserModal({ user, onClose, onSave }) {
 
             <h4>User Machines</h4>
 
-            {machines.length === 0 ? (
+            <div style={styles.machineContainer}>
 
-              <p>No machines</p>
+              {machines.length === 0 ? (
 
-            ) : (
+                <p>No machines</p>
 
-              machines.map((m, i) => (
+              ) : (
 
-                <div key={i} style={styles.model}>
+                machines.map((m, i) => (
 
-                  <div>
-                    <p>{m.name}</p>
+                  <div key={i} style={styles.model}>
 
-                    <small>
-                      {m.earnings || 0} PYE Earned
-                    </small>
-                  </div>
+                    <div>
+                      <p>{m.name}</p>
 
-                  <button
-                    type="button"
-                    style={{
-                      background:"red",
-                      border:"none",
-                      padding:"5px",
-                      cursor:"pointer",
-                      color:"white"
-                    }}
+                      <small>
+                        {m.earnings || 0} PYE Earned
+                      </small>
+                    </div>
 
-                    onClick={async () => {
+                    <button
+                      type="button"
+                      style={{
+                        background:"red",
+                        border:"none",
+                        padding:"5px",
+                        cursor:"pointer",
+                        color:"white"
+                      }}
+                      onClick={async () => {
 
-                      const confirmDelete =
-                        window.confirm(
-                          "Remove this machine?"
+                        const confirmDelete =
+                          window.confirm(
+                            "Remove this machine?"
+                          );
+
+                        if(!confirmDelete) return;
+
+                        /*await supabase
+                          .from("active_investments")
+                          .delete()
+                          .eq("id", m.id);*/
+                        
+                        const { error } = await supabase
+                          .from("active_investments")
+                          .delete()
+                          .eq("id", m.id);
+
+                        if(error){
+                          console.log("DELETE ERROR:", error);
+                          alert(error.message);
+                          return;
+                        }
+
+                        console.log("DELETE SUCCESS");
+                        
+
+                        setMachines(prev =>
+                          prev.filter(x => x.id !== m.id)
                         );
 
-                      if(!confirmDelete) return;
+                      }}
+                    >
+                      Remove
+                    </button>
 
-                      await supabase
-                        .from("active_investments")
-                        .delete()
-                        .eq("id", m.id);
+                  </div>
 
-                      setMachines(prev =>
-                        prev.filter(x => x.id !== m.id)
-                      );
+                ))
 
-                    }}
-                  >
-                    Remove
-                  </button>
+              )}
 
-                </div>
-
-              ))
-
-            )}
+            </div>
 
             <button
               type="button"
@@ -442,6 +461,13 @@ const styles = {
     padding:"15px",
     borderRadius:"10px",
     backdropFilter:"blur(10px)"
+  },
+
+  machineContainer:{
+    maxHeight:"250px",
+    overflowY:"auto",
+    marginTop:"10px",
+    paddingRight:"5px"
   },
 
   balanceGrid:{

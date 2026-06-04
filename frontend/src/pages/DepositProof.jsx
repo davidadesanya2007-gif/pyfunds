@@ -72,7 +72,8 @@ function DepositProof() {
 
       setAlert({
         type:"success",
-        message:"Deposit submitted successfully ⏳"
+        message:"Deposit submitted successfully ⏳",
+        playMoneySound:true
       });
 
       setTimeout(()=>{
@@ -143,9 +144,10 @@ function DepositProof() {
 
       {alert && (
         <CustomAlert
-          message={alert.message}
           type={alert.type}
-          onClose={()=>setAlert(null)}
+          message={alert.message}
+          playMoneySound={alert.playMoneySound}
+          onClose={() => setAlert(null)}
         />
       )}
 

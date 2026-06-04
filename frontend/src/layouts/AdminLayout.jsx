@@ -39,8 +39,6 @@ function AdminLayout() {
           Campaigns
         </div>
 
-        <div style={styles.menu} onClick={()=>window.location.href="/admin-transactions"}> Transactions</div>
-
         <div style={styles.menu} onClick={()=>window.location.href="/admin-settings"}>
         Settings</div>
 

@@ -28,21 +28,21 @@ function Stats() {
 
 const styles = {
 
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "40px",
-    marginTop: "80px",
-    flexWrap: "wrap"
+  container:{
+    display:"grid",
+    gridTemplateColumns:"repeat(2,1fr)",
+    gap:"15px",
+    marginTop:"80px",
+    width:"100%"
   },
 
-  statBox: {
-    background: "#020617",
-    padding: "30px",
-    borderRadius: "10px",
-    textAlign: "center",
-    width: "200px",
-    border: "1px solid #1e293b",
+  statBox:{
+    background:"#020617",
+    padding:"20px",
+    borderRadius:"12px",
+    textAlign:"center",
+    width:"100%",
+    border:"1px solid #1e293b",
     color:"#e0d5d5"
   }
 

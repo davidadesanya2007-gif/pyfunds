@@ -277,11 +277,20 @@ function Referral() {
 
                   referrals.map((ref, index) => (
 
-                    <tr key={index}>
+                    <tr
+                      key={index}
+                      style={{
+                        background:"#020617"
+                      }}
+                    >
 
-                      <td>{index + 1}</td>
+                      <td style={{padding:"15px"}}>
+                        {index + 1}
+                      </td>
 
-                      <td>{ref.id}</td>
+                      <td style={{padding:"15px"}}>
+                        {ref.id}
+                      </td>
 
                       <td>
 
@@ -307,7 +316,7 @@ function Referral() {
 
                       </td>
 
-                      <td>
+                      <td style={{padding:"15px"}}>
                         {Number(ref.commission || 0).toFixed(2)} PYE
                       </td>
 
@@ -357,21 +366,25 @@ const styles = {
     marginTop: "15px"
   },
 
-  input: {
-    flex: 1,
-    padding: "10px",
-    borderRadius: "6px",
-    border: "1px solid #1e293b",
-    background: "#0f172a",
-    color: "white"
+  input:{
+    flex:1,
+    padding:"12px",
+    borderRadius:"8px",
+    border:"1px solid #ddd",
+    background:"#fff",
+    color:"#000"
   },
 
-  copyBtn: {
-    padding: "10px 20px",
-    background: "#38bdf8",
-    border: "none",
-    borderRadius: "6px",
-    cursor: "pointer"
+  copyBtn:{
+    width:"90px",
+    minWidth:"90px",
+    height:"42px",
+    background:"#38bdf8",
+    border:"none",
+    borderRadius:"8px",
+    cursor:"pointer",
+    fontSize:"13px",
+    fontWeight:"bold"
   },
 
   grid: {
@@ -389,7 +402,6 @@ const styles = {
 
   page:{
     minHeight:"100vh",
-    background:"#020617"
   },
 
   header:{
@@ -402,19 +414,19 @@ const styles = {
   },
 
   linkCard:{
-    background:"linear-gradient(145deg,#071120,#0f172a)",
-    padding:"25px",
-    borderRadius:"20px",
-    border:"1px solid rgba(14,165,233,0.2)",
-    marginBottom:"25px",
-    boxShadow:"0 0 30px rgba(14,165,233,0.08)"
+    width:"100%",
+    background:"#fff",
+    padding:"18px",
+    borderRadius:"12px",
+    marginBottom:"20px",
+    boxShadow:"0 4px 10px rgba(0,0,0,0.08)"
   },
 
   statsGrid:{
     display:"grid",
-    gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-    gap:"20px",
-    marginBottom:"30px"
+    gridTemplateColumns:"repeat(2,1fr)",
+    gap:"15px",
+    marginBottom:"25px"
   },
 
   statCard:{
@@ -437,7 +449,7 @@ const styles = {
   },
 
   bigCard:{
-    background:"linear-gradient(145deg,#071120,#0f172a)",
+    backgroun:"linear-gradient(145deg,#071120,#0f172a)",
     border:"1px solid rgba(14,165,233,0.15)",
     borderRadius:"20px",
     padding:"25px"
@@ -465,14 +477,16 @@ const styles = {
 
   table:{
     width:"100%",
-    borderCollapse:"collapse",
+    background:"linear-gradient(145deg,#071120,#0f172a)",
+    borderCollapse:"separate",
+    borderSpacing:"0 10px",
     color:"white"
   },
 
   levelGrid:{
     display:"grid",
-    gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
-    gap:"20px",
+    gridTemplateColumns:"repeat(2,1fr)",
+    gap:"15px",
     marginTop:"20px"
   },
 

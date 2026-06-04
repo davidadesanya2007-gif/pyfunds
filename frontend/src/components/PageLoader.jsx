@@ -8,7 +8,7 @@ function PageLoader() {
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
-        background:"#020617"
+        backgroun:"#020617"
       }}
     >
 

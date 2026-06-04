@@ -7,35 +7,51 @@ function Support() {
       <Sidebar />
 
       <div style={styles.container}>
-
-        <h1>Customer Support</h1>
-
+          
         <div style={styles.card}>
 
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            style={styles.input}
-          />
+          <h2>WhatsApp Support Groups</h2>
 
-          <label>Issue Type</label>
-          <select style={styles.input}>
-            <option>Deposit Issue</option>
-            <option>Withdrawal Issue</option>
-            <option>Account Problem</option>
-            <option>Other</option>
-          </select>
+          <p>Select your phase to join support group</p>
 
-          <label>Message</label>
-          <textarea
-            placeholder="Describe your problem..."
-            style={styles.textarea}
-          />
+          {/* PHASE 1 */}
+          <div style={styles.groupCard}>
+            <h3>PYEFUNDS - PHASE 1</h3>
+            <button
+              style={styles.button}
+              onClick={() =>
+                window.open("https://chat.whatsapp.com/YOUR_PHASE_1_LINK", "_blank")
+              }
+            >
+              Join Group
+            </button>
+          </div>
 
-          <button style={styles.button}>
-            Send Support Request
-          </button>
+          {/* PHASE 2 */}
+          <div style={styles.groupCard}>
+            <h3>PYEFUNDS - PHASE 2</h3>
+            <button
+              style={styles.button}
+              onClick={() =>
+                window.open("https://chat.whatsapp.com/YOUR_PHASE_2_LINK", "_blank")
+              }
+            >
+              Join Group
+            </button>
+          </div>
+
+          {/* PHASE 3 */}
+          <div style={styles.groupCard}>
+            <h3>PYEFUNDS - PHASE 3</h3>
+            <button
+              style={styles.button}
+              onClick={() =>
+                window.open("https://chat.whatsapp.com/YOUR_PHASE_3_LINK", "_blank")
+              }
+            >
+              Join Group
+            </button>
+          </div>
 
         </div>
 
@@ -80,13 +96,25 @@ const styles = {
     height:"120px"
   },
 
-  button:{
-    marginTop:"10px",
-    padding:"12px",
-    background:"#38bdf8",
-    border:"none",
-    borderRadius:"6px",
-    cursor:"pointer"
+  groupCard: {
+    background: "#0f172a",
+    padding: "15px",
+    borderRadius: "10px",
+    border: "1px solid #1e293b",
+    marginTop: "15px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px"
+  },
+
+  button: {
+    padding: "12px",
+    background: "#22c55e",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    color: "white",
+    fontWeight: "bold"
   }
 
 };

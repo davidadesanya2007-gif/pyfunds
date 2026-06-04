@@ -83,9 +83,20 @@ function Investment() {
               
             >
 
-              <h3>{item.name}</h3>
+              <h3
+                style={{
+                  fontSize:"14px",
+                  marginBottom:"5px"
+                }}
+              >
+                {item.name}
+              </h3>
 
-              <img src={item.image} style={styles.imageBox} />
+              <img
+                src={item.image}
+                alt={item.name}
+                style={styles.imageBox}
+              />
 
               <div style={styles.infoRow}>
                 <span>📈 {item.percent}</span>
@@ -163,27 +174,25 @@ const styles = {
   grid:{
     display:"grid",
     gridTemplateColumns:"repeat(2,1fr)",
-    gap:"15px",
+    gap:"12px",
     marginTop:"20px"
   },
 
   card:{
     background:"#fff",
-    padding:"15px",
+    padding:"10px",
     borderRadius:"12px",
-    boxShadow:"0 4px 8px rgba(0,0,0,0.05)"
+    boxShadow:"0 4px 8px rgba(0,0,0,0.05)",
+    maxWidth:"180px",
+    width:"100%"
   },
 
   imageBox:{
-    height:"300px",
     width:"100%",
-    background:"#e5e7eb",
+    height:"120px",
+    objectFit:"cover",
     borderRadius:"10px",
-    margin:"10px 0",
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"center",
-    color:"#555"
+    margin:"8px 0"
   },
 
   infoRow:{
@@ -193,19 +202,20 @@ const styles = {
   },
 
   text:{
-    fontSize:"16px",
-    marginTop:"5px"
+    fontSize:"12px",
+    marginTop:"4px"
   },
 
   button:{
-    marginTop:"10px",
+    marginTop:"8px",
     width:"100%",
-    padding:"10px",
+    padding:"8px",
     background:"#c8a96a",
     border:"none",
-    borderRadius:"10px",
+    borderRadius:"8px",
     cursor:"pointer",
-    fontWeight:"bold"
+    fontWeight:"bold",
+    fontSize:"12px"
   }
 
 };

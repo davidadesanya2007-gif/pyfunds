@@ -49,6 +49,11 @@ function AdminUsers() {
     u => !u.blocked
   ).length;
 
+  const refreshUsers = async () => {
+    const data = await getAllUsers();
+    setUsers(data);
+  };
+
   return (
     <div style={styles.container}> {/* ✅ IMPORTANT */}
 
@@ -167,18 +172,25 @@ function AdminUsers() {
           // 🔥 DELETE USER
           if (deleteEmail) {
 
-            // DELETE FROM SUPABASE
             await supabase
               .from("users")
               .delete()
               .eq("email", deleteEmail);
 
-            // UPDATE UI
-            const filtered =
-              users.filter(u => u.email !== deleteEmail);
+            // 🔥 ALSO DELETE MACHINES HERE (IMPORTANT)
+            await supabase
+              .from("active_investments")
+              .delete()
+              .eq("user_id",
+                users.find(u => u.email === deleteEmail)?.id
+              );
 
-            setUsers(filtered);
+              await refreshUsers();
 
+            const refreshedUsers = await getAllUsers();
+            setUsers(refreshedUsers);
+
+            setSelectedUser(null);
             return;
           }
 
@@ -194,13 +206,15 @@ function AdminUsers() {
           }
 
           // UPDATE UI
-          const updatedList = users.map(u =>
+          /*const updatedList = users.map(u =>
             u.email === updatedUser.email
               ? updatedUser
               : u
           );
 
-          setUsers(updatedList);
+          setUsers(updatedList);*/
+          const refreshedUsers = await getAllUsers();
+          setUsers(refreshedUsers);
 
           setSelectedUser(null);
         }}

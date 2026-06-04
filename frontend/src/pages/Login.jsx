@@ -148,7 +148,7 @@ function Login() {
 
       <div style={styles.formBox}>
 
-        <h2>Login to PYFUNDS</h2>
+        <h2>Login to PYEFUNDS</h2>
 
         <input
           type="email"

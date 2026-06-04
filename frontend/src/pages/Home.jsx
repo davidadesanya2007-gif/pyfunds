@@ -43,12 +43,11 @@ function Home() {
     <div style={styles.container}>
 
       <h1 style={styles.title}>
-        Welcome to PYFUNDS
+        Welcome to PYEFUNDS
       </h1>
 
       <p style={styles.subtitle}>
-        A smart platform designed to help you grow your investments
-        with secure and transparent financial technology.
+        A digital platform focused on creating opportunities for finicial growth through technology, comminity paticipation, and innovation digital products
       </p>
 
       <div style={styles.buttons}>
@@ -131,29 +130,34 @@ const styles = {
     fontWeight:"bold"
   },
 
-  buttons: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "20px",
+  buttons:{
+    display:"flex",
+    justifyContent:"center",
+    gap:"20px",
+    flexWrap:"wrap"
   },
 
-  primaryBtn: {
-    padding: "14px 30px",
-    fontSize: "16px",
-    background: "#38bdf8",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
+  primaryBtn:{
+    width:"180px",
+    minWidth:"180px",
+    padding:"14px 20px",
+    fontSize:"16px",
+    background:"#38bdf8",
+    border:"none",
+    borderRadius:"8px",
+    cursor:"pointer"
   },
 
-  secondaryBtn: {
-    padding: "14px 30px",
-    fontSize: "16px",
-    background: "transparent",
-    border: "2px solid #38bdf8",
-    borderRadius: "8px",
-    color: "#38bdf8",
-    cursor: "pointer",
+  secondaryBtn:{
+    width:"180px",
+    minWidth:"180px",
+    padding:"14px 20px",
+    fontSize:"16px",
+    background:"transparent",
+    border:"2px solid #38bdf8",
+    borderRadius:"8px",
+    color:"#38bdf8",
+    cursor:"pointer"
   },
 
   rateBox:{

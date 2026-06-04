@@ -153,7 +153,7 @@ function Admin() {
 
         <h2 style={styles.logo}>⚡ PYE Admin</h2>
 
-        {["Dashboard","Users","AI Models","Campaigns","Transactions","Settings"].map((item, i)=>(
+        {["Dashboard","Users","AI Models","Campaigns", "Settings"].map((item, i)=>(
           <div
             key={i}
             style={styles.menu}
@@ -175,10 +175,6 @@ function Admin() {
 
               if(item === "Campaigns"){
                 window.location.href="/admin-campaigns";
-              }
-
-              if(item === "Transactions"){
-                window.location.href="/admin-transactions";
               }
 
               if(item === "Settings"){

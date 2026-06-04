@@ -640,7 +640,7 @@ function Register() {
       <div style={styles.formBox}>
 
         <h2 style={styles.title}>
-          Create PYFUNDS Account
+          Create PYEFUNDS Account
         </h2>
 
         <input

@@ -186,7 +186,10 @@ function Withdraw() {
 
     });
 
-    setAlert({ type:"success", message:"Withdrawal request sent ⏳" });
+    setAlert({ 
+      type:"success", message:"Withdrawal request sent ⏳",
+      playMoneySound:true
+     });
 
     setAmount("");
   };
@@ -285,9 +288,10 @@ function Withdraw() {
 
       {alert && (
         <CustomAlert
-          message={alert.message}
           type={alert.type}
-          onClose={()=>setAlert(null)}
+          message={alert.message}
+          playMoneySound={alert.playMoneySound}
+          onClose={() => setAlert(null)}
         />
       )}
 

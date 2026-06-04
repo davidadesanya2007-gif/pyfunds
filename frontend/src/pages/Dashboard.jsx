@@ -115,27 +115,52 @@ function Dashboard() {
       <div style={styles.grid}>
 
         <div style={styles.card}>
-          <h4>₦ Balance</h4>
+          <h4 style={{
+            fontSize:"14px",
+            color:"#cbd5e1"
+          }}>
+            ₦ Balance
+          </h4>
           <p style={styles.amount}>₦{Number(user?.balance || 0).toFixed(2)}</p>
         </div>
 
         <div style={styles.card}>
-          <h4>PYE Balance</h4>
+          <h4 style={{
+            fontSize:"14px",
+            color:"#cbd5e1"
+          }}>
+            PYE Balance
+          </h4>
           <p style={styles.amount}>{Number(user?.pyeBalance || 0).toFixed(2)} PYE</p>
         </div>
 
         <div style={styles.card}>
-          <h4>Active Investments</h4>
+          <h4 style={{
+            fontSize:"14px",
+            color:"#cbd5e1"
+          }}>
+            Active Investment
+          </h4>
           <p style={styles.amount}>{investments.length}</p>
         </div>
 
         <div style={styles.card}>
-          <h4>Total Earnings</h4>
+          <h4 style={{
+            fontSize:"14px",
+            color:"#cbd5e1"
+          }}>
+            Total Earnings
+          </h4>
           <p style={styles.amount}>{totalEarnings.toFixed(2)} PYE</p>
         </div>
 
         <div style={styles.card}>
-          <h4>Available Units</h4>
+          <h4 style={{
+            fontSize:"14px",
+            color:"#cbd5e1"
+          }}>
+            Available Units
+          </h4>
           <p style={styles.amount}>
             {Number(user?.units || 0)}
           </p>
@@ -239,17 +264,17 @@ const styles = {
   },
 
   subtitle: {
-    color: "#cbd5e1",
+    fontWeight: "500",
+    color: "#ffffff",
     marginTop: "8px",
-    fontSize: "16px",
+    fontSize: "20px",
     lineHeight: "1.5"
   },
 
   grid: {
     display: "grid",
-    gridTemplateColumns:
-      "repeat(auto-fit,minmax(160px,1fr))",
-    gap: "18px",
+    gridTemplateColumns: "repeat(2,1fr)",
+    gap: "12px",
     marginTop: "25px",
     width: "100%"
   },
@@ -257,58 +282,67 @@ const styles = {
   card: {
     background:
       "linear-gradient(180deg,#020617,#0f172a)",
-    padding: "24px",
-    borderRadius: "22px",
+    padding: "16px",
+    borderRadius: "18px",
     border: "1px solid rgba(56,189,248,0.25)",
-    minHeight: "140px",
+    minHeight: "120px",
+
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+
     boxShadow:
-      "0 0 25px rgba(14,165,233,0.08)"
+      "0 0 25px rgba(14,165,233,0.08)",
+
+    overflow: "hidden",
+    textAlign: "center"
   },
 
   amount: {
-    fontSize: "28px",
-    marginTop: "14px",
+    fontSize: "clamp(16px,4vw,24px)",
+    marginTop: "10px",
     color: "#22c55e",
     fontWeight: "800",
-    lineHeight: "1.3",
-    wordBreak: "break-word"
+
+    wordBreak: "break-word",
+    overflowWrap: "break-word",
+
+    lineHeight: "1.2"
   },
 
   actions: {
     display: "grid",
-    gridTemplateColumns:
-      "repeat(auto-fit,minmax(160px,1fr))",
-    gap: "16px",
-    marginTop: "30px",
+    gridTemplateColumns: "repeat(2,1fr)",
+    gap: "12px",
+    marginTop: "25px",
     width: "100%"
   },
 
   btn1: {
     background:
       "linear-gradient(90deg,#e2e8f0,#cbd5e1)",
-    padding: "16px",
+    padding: "14px",
     borderRadius: "18px",
     border: "none",
     cursor: "pointer",
     fontWeight: "700",
-    fontSize: "16px",
-    minHeight: "60px"
+    fontSize: "14px",
+    minHeight: "60px",
+    width: "100%",
   },
 
   btn2: {
     background:
       "linear-gradient(90deg,#22c55e,#16a34a)",
-    padding: "16px",
+    padding: "14px",
     borderRadius: "18px",
     border: "none",
     cursor: "pointer",
     color: "white",
     fontWeight: "700",
-    fontSize: "16px",
+    fontSize: "14px",
     minHeight: "60px",
+    width: "100%",
     boxShadow:
       "0 0 18px rgba(34,197,94,0.3)"
   },
@@ -316,14 +350,15 @@ const styles = {
   btn3: {
     background:
       "linear-gradient(90deg,#ef4444,#dc2626)",
-    padding: "16px",
+    padding: "14px",
     borderRadius: "18px",
     border: "none",
     cursor: "pointer",
     color: "white",
     fontWeight: "700",
-    fontSize: "16px",
+    fontSize: "14px",
     minHeight: "60px",
+    width: "100%",
     boxShadow:
       "0 0 18px rgba(239,68,68,0.3)"
   },
@@ -331,13 +366,14 @@ const styles = {
   btn4: {
     background:
       "linear-gradient(90deg,#3b82f6,#2563eb)",
-    padding: "16px",
+    padding: "14px",
     borderRadius: "18px",
     border: "none",
     cursor: "pointer",
     color: "white",
     fontWeight: "700",
-    fontSize: "16px",
+    fontSize: "14px",
+    width: "100%",
     minHeight: "60px",
     boxShadow:
       "0 0 18px rgba(59,130,246,0.3)"

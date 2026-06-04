@@ -1,13 +1,24 @@
 import { useEffect } from "react";
 
-function CustomAlert({ message, type, onClose }) {
+function CustomAlert({
+  message,
+  type,
+  onClose,
+  playMoneySound = false
+}) {
 
   useEffect(() => {
-    if (type === "success") {
-      const audio = new Audio("/money.mp4");
+
+    if(playMoneySound){
+
+      const audio =
+        new Audio("/money.mp4");
+
       audio.play();
+
     }
-  }, [type]);
+
+  }, [playMoneySound]);
 
   return (
     <div style={styles.overlay}>

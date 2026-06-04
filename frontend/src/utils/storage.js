@@ -1388,3 +1388,59 @@ async (settings) => {
   return true;
 
 };
+
+/*
+// =========================
+// NOTIFICATIONS STORAGE
+// =========================
+
+// UPLOAD IMAGE TO SUPABASE STORAGE
+export const uploadNotificationImage = async (file) => {
+  const fileName = `${Date.now()}-${file.name}`;
+
+  const { data, error } = await supabase
+    .storage
+    .from("notification-images")
+    .upload(fileName, file);
+
+  if (error) {
+    console.log("UPLOAD ERROR:", error);
+    return null;
+  }
+
+  const { data: urlData } = supabase
+    .storage
+    .from("notification-images")
+    .getPublicUrl(fileName);
+
+  return urlData.publicUrl;
+};
+
+// CREATE NOTIFICATION
+export const addNotification = async (notification) => {
+  const { error } = await supabase
+    .from("admin_notifications")
+    .insert([notification]);
+
+  if (error) {
+    console.log(error);
+    return false;
+  }
+
+  return true;
+};
+
+// GET LATEST NOTIFICATION
+export const getLatestNotification = async () => {
+  const { data, error } = await supabase
+    .from("admin_notifications")
+    .select("*")
+    .order("id", { ascending: false })
+    .limit(1)
+    .single();
+
+  if (error) return null;
+
+  return data;
+};
+*/
