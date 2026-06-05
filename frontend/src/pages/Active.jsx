@@ -149,7 +149,9 @@ function ActiveInvestments() {
 
             <img src={item.image} style={styles.image} />
 
-            <h3>{item.name}</h3>
+            <h3 style={{ fontSize: "13px", margin: "0" }}>
+              {item.name}
+            </h3>
 
             {/* 2 COLUMN TEXT */}
             <div style={styles.infoRow}>
@@ -221,9 +223,9 @@ const styles = {
   infoRow:{
     display:"flex",
     justifyContent:"space-between",
-    fontSize:"11px",
-    padding:"2px 0",
-    borderBottom:"1px solid #f2f2f2"
+    fontSize:"12px",
+    padding:"4px 0",
+    alignItems:"center"
   },
 
   card:{
@@ -234,7 +236,8 @@ const styles = {
     fontSize:"12px",
     display:"flex",
     flexDirection:"column",
-    gap:"5px"
+    gap:"6px",
+    color:"#222"
   },
 
   image:{
