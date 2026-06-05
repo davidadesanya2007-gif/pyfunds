@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { supabase } from "../supabase";
+/*
 import {
   getActiveInvestments,
   updateActiveInvestment,
@@ -6,6 +8,11 @@ import {
   updateUserEverywhere,
   addTransaction,
   deleteActiveInvestment
+} from "../utils/storage";
+ */
+import {
+  getActiveInvestments,
+  getUser
 } from "../utils/storage";
 
 import CustomAlert from "../components/CustomAlert";
@@ -15,7 +22,9 @@ function ActiveInvestments() {
   
   const [investments, setInvestments] = useState([]);
   const [alert, setAlert] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  /*
  useEffect(() => {
 
     const fetchData = async () => {
@@ -47,233 +56,77 @@ function ActiveInvestments() {
     fetchData();
 
   }, []);
+  */
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+
+      setLoading(true);
+
+      const all = await getActiveInvestments();
+
+      const formatted = (all || []).map(inv => ({
+        ...inv,
+
+        // ✅ FIX SUPABASE COLUMN NAMES
+        dailyEarning:
+          inv.dailyEarning || inv.dailyearning,
+
+        unitsLeft:
+          inv.unitsLeft || inv.unitsleft,
+
+        daysLeft:
+          inv.daysLeft || inv.daysleft,
+
+        lastClaim:
+          inv.lastClaim || inv.lastclaim
+      }));
+
+      setInvestments(formatted);
+      setLoading(false);
+    };
+
+    fetchData();
+
+  }, []);
 
   const handleClaim = async (id) => {
 
-    const user = await getUser(); // ✅ MOVE HERE
+    const user = await getUser();
 
-    let claimed = false;
-
-    const updated = await Promise.all(
-      investments.map(async (inv) => {
-
-      if (inv.id !== id) return inv;
-
-      const now = new Date();
-
-      const today =
-        now.toDateString();
-
-      const lastClaimDate =
-        inv.lastClaim
-          ? new Date(inv.lastClaim).toDateString()
-          : null;
-
-      // ✅ BLOCK MULTIPLE CLAIMS SAME DAY
-      if (lastClaimDate === today) {
-
-        setAlert({
-          type: "error",
-          message:
-            "You already claimed today's earnings, come back tomorrow 9:00 AM!"
-        });
-
-        return inv;
-      }
-
-      let earning = 0;
-
-      // 🔥 NEW REFERRAL MACHINE (STACKING SYSTEM)
-      if (inv.type === "referral") {
-
-        const activeUnits =
-          (user.referralEarnings || [])
-            .filter(e => e.expiry > Date.now())
-            .reduce((sum, e) => sum + e.amount, 0);
-
-        if (activeUnits <= 0) {
-          setAlert({
-            type: "error",
-            message: "No active referral units"
-          });
-          return inv;
-        }
-
-        earning = activeUnits;
-      }
-
-      // 🔥 LIMITED MACHINE
-      else if (inv.type === "limited") { 
-
-        if (Number(inv.daysLeft) <= 0) {
-
-          return null;
-
-        }
-
-        // ✅ MACHINE'S OWN DAILY EARNING
-        earning =
-          Number(inv.dailyEarning || 0);
-
-        const hasBonusUnit = Number   (user?.units || 0) > 0;
-
-        if (hasBonusUnit) {
-          earning += 1;
-          user.units = Number(user.units) - 1;
-          await updateUserEverywhere(user);
-        }
-
-      }
-
-      // 🔥 NORMAL PRODUCTS
-      else {
-
-        const userUnits = Number(user?.units || 0);
-        const machineUnits = Number(inv.unitsLeft || 0);
-
-        // ❌ BLOCK IF BOTH ARE ZERO
-        if (machineUnits <= 0 && userUnits <= 0) {
-          setAlert({
-            type: "error",
-            message: "No units available. Please purchase AI Model first ❌"
-          });
-
-          return inv;
-        }
-
-        earning = Number(inv.dailyEarning) || 0;
-
-        // ✅ USE BONUS UNIT ONLY IF AVAILABLE
-        if (userUnits > 0) {
-          earning += 1;
-          user.units = userUnits - 1;
-          await updateUserEverywhere(user);
-        }
-
-      }
-
-      /*if (earning <= 0) {
-        setAlert({
-          type: "error",
-          message: "Invalid earning value"
-        });
-        return inv;
-      }
-
-      const user = await getUser();
-      const currentBalance = user?.pyeBalance || 0;
-
-      const newBalance = currentBalance + earning;
-
-      // 🔥 UPDATE USER BALANCE
-      user.pyeBalance = newBalance;
-      await updateUserEverywhere(user);*/
-
-      const currentBalance =
-        Number(user?.pyeBalance || 0);
-
-      const newBalance =
-        currentBalance + Number(earning);
-
-      // 🔥 UPDATE USER BALANCE
-      user.pyeBalance = newBalance;
-
-      await updateUserEverywhere(user);
-
-      await addTransaction({
-        type: "EARNING",
-        amount: earning,
-        currency:"PYE",
-        name: inv.name,
-        date: new Date().toLocaleString()
-      });
-
-      new Audio(moneySound).play();
-
-      claimed = true;
-
-      return {
-
-        ...inv,
-
-        earnings:
-          Number(inv.earnings || 0)
-          + Number(earning),
-
-        lastClaim:
-          new Date().toISOString(),
-
-        // ✅ REDUCE MACHINE UNIT
-        unitsLeft:
-          Number(inv.unitsLeft || 0) - 1,
-
-        // ✅ ONLY LIMITED MACHINES USE DAYS
-        daysLeft:
-          inv.type === "limited"
-            ? Number(inv.daysLeft || 0) - 1
-            : inv.daysLeft
-
-      };
-    })
-    );
-
-    // 🔥 REMOVE EXPIRED
-    const cleaned = updated.filter((inv) => {
-
-      if (!inv) return false;
-
-      // LIMITED MACHINE EXPIRED
-      if (
-        inv.type === "limited" &&
-        Number(inv.daysLeft) <= 0
-      ) {
-        return false;
-      }
-
-      // NORMAL MACHINE FINISHED
-      if (
-        inv.type !== "limited" &&
-        Number(inv.unitsLeft) <= 0
-      ) {
-        return false;
-      }
-
-      return true;
-
+    const { data, error } = await supabase.rpc("claim_earning", {
+      p_investment_id: id,
+      p_user_id: user.id
     });
 
-    // 🔥 REMOVE EXPIRED
-    /*
-    const cleaned = updated.filter((inv) => {
-      if (!inv) return false;
-      if (inv.type === "limited" && inv.daysLeft <= 0) return false;
-      return true;
-    });
-    */
+    console.log("RPC RESPONSE:", { data, error });
 
-    setInvestments(cleaned);
-    for (const inv of updated) {
-
-      // ❌ REMOVE EXPIRED FROM DATABASE TOO
-      if (inv && inv.type === "limited" && inv.daysLeft <= 0) {
-        await deleteActiveInvestment(inv.id);
-        continue;
-      }
-
-      if (inv) {
-        await updateActiveInvestment(inv);
-      }
-    }
-
-    // await setActiveInvestments(updatedAll);
-
-    if (claimed) {
+    // ❌ ONLY CHECK ERROR (IMPORTANT FIX)
+    if (error) {
       setAlert({
-        type: "success",
-        message: "Earnings claimed ✅",
-        playMoneySound:true
+        type: "error",
+        message: error.message
       });
+      return;
     }
+
+    // backend returned custom error
+    if (data?.error) {
+      setAlert({
+        type: "error",
+        message: data.error
+      });
+      return;
+    }
+
+    setAlert({
+      type: "success",
+      message: `Earned ${data.earning} PYE ✅`
+    });
+
+    const refreshed = await getActiveInvestments();
+    setInvestments(refreshed);
   };
 
   return (
@@ -281,46 +134,67 @@ function ActiveInvestments() {
 
       <h2>Active Investments</h2>
 
-      {investments.length === 0 && <p>No active investment yet</p>}
+      {loading ? (
+        <p>Loading...</p>
+      ) : investments.length === 0 ? (
+        <p>No active investment yet</p>
+      ) : null}
 
-      {investments.map((item) => (
+      {/* GRID START */}
+      <div style={styles.grid}>
 
-        <div key={item.id} style={styles.card}>
+        {investments.map((item) => (
 
-          <img src={item.image} style={styles.image} />
+          <div key={item.id} style={styles.card}>
 
-          <h3>{item.name}</h3>
+            <img src={item.image} style={styles.image} />
 
-          <p>
-            Daily Earnings:
-            {item.dailyEarning} PYE
-          </p>
+            <h3>{item.name}</h3>
 
-          <p>Invested: {item.price} PYE</p>
-          <p>Earned: {item.earnings || 0} PYE</p>
+            {/* 2 COLUMN TEXT */}
+            <div style={styles.infoRow}>
+              <span>Daily:</span>
+              <span>{item.dailyEarning} PYE</span>
+            </div>
 
-          {item.type === "limited" && (
-            <>
-              <p>
-                Days Left: {item.daysLeft}
-              </p>
+            <div style={styles.infoRow}>
+              <span>Invested:</span>
+              <span>{item.price} PYE</span>
+            </div>
 
-              <p>
-                Units Left: {item.unitsLeft}
-              </p>
-            </>
-          )}
+            <div style={styles.infoRow}>
+              <span>Earned:</span>
+              <span>{item.earnings || 0} PYE</span>
+            </div>
 
-          <button
-            style={styles.button}
-            onClick={() => handleClaim(item.id)}
-          >
-            Claim Daily Earnings
-          </button>
+            {item.type === "limited" && (
+              <>
+                <div style={styles.infoRow}>
+                  <span>Days:</span>
+                  <span>{item.daysLeft}</span>
+                </div>
 
-        </div>
+                <div style={styles.infoRow}>
+                  <span>Units:</span>
+                  <span>{item.unitsLeft}</span>
+                </div>
+              </>
+            )}
 
-      ))}
+            <button
+              style={styles.button}
+              onClick={() => handleClaim(item.id)}
+            >
+              Claim Daily Earnings
+            </button>
+
+          </div>
+
+        ))}
+
+      </div>
+
+      {/* GRID END */}
 
       {alert && (
         <CustomAlert
@@ -336,19 +210,38 @@ function ActiveInvestments() {
 }
 
 const styles = {
-  card: {
-    background: "#fff",
-    color:"#333",
-    padding: "15px",
-    borderRadius: "10px",
-    marginTop: "15px"
+
+  grid:{
+    display:"grid",
+    gridTemplateColumns:"repeat(2, minmax(0, 1fr))",
+    gap:"10px",
+    marginTop:"15px"
   },
 
-  image: {
-    width: "100%",
-    height: "350px",
-    objectFit: "cover",
-    borderRadius: "10px"
+  infoRow:{
+    display:"flex",
+    justifyContent:"space-between",
+    fontSize:"11px",
+    padding:"2px 0",
+    borderBottom:"1px solid #f2f2f2"
+  },
+
+  card:{
+    background:"#fff",
+    padding:"10px",
+    borderRadius:"12px",
+    boxShadow:"0 4px 8px rgba(0,0,0,0.05)",
+    fontSize:"12px",
+    display:"flex",
+    flexDirection:"column",
+    gap:"5px"
+  },
+
+  image:{
+    width:"100%",
+    height:"110px",
+    objectFit:"cover",
+    borderRadius:"8px"
   },
 
   button: {

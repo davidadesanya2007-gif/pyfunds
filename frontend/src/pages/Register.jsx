@@ -359,7 +359,7 @@ function Register() {
             region,
             phase,
 
-            pyeBalance: 0,
+            pyebalance: 0,
             balance: 2000,
 
             referralCommission: 0,
@@ -441,9 +441,9 @@ function Register() {
               ) + 0.5,
 
             // ✅ ADD BONUS TO BALANCE
-            pyeBalance:
+            pyebalance:
               Number(
-                referredByUser.pyeBalance || 0
+                referredByUser.pyebalance || 0
               ) + 0.5
 
           })
@@ -500,8 +500,8 @@ function Register() {
 
         if(levelB){
 
-          levelB.pyeBalance =
-            Number(levelB.pyeBalance || 0)
+          levelB.pyebalance =
+            Number(levelB.pyebalance || 0)
             + 0.25;
 
           levelB.totalReferralCommission =
@@ -516,8 +516,8 @@ function Register() {
             .from("users")
             .update({
 
-              pyeBalance:
-                levelB.pyeBalance,
+              pyebalance:
+                levelB.pyebalance,
 
               totalReferralCommission:
                 levelB.totalReferralCommission,
@@ -570,8 +570,8 @@ function Register() {
 
           if(levelC){
 
-            levelC.pyeBalance =
-              Number(levelC.pyeBalance || 0)
+            levelC.pyebalance =
+              Number(levelC.pyebalance || 0)
               + 0.15;
 
             levelC.totalReferralCommission =
@@ -586,8 +586,8 @@ function Register() {
               .from("users")
               .update({
 
-                pyeBalance:
-                  levelC.pyeBalance,
+                pyebalance:
+                  levelC.pyebalance,
 
                 totalReferralCommission:
                   levelC.totalReferralCommission,

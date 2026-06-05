@@ -69,9 +69,9 @@ async (updatedUser) => {
 
     email: updatedUser.email,
 
-    pyeBalance:
+    pyebalance:
       Number(
-        Number(updatedUser.pyeBalance || 0)
+        Number(updatedUser.pyebalance || 0)
           .toFixed(2)
       ),
 
@@ -821,8 +821,8 @@ async (buyer, productPrice) => {
 
       });
 
-    levelA.pyeBalance =
-      Number(levelA.pyeBalance || 0)
+    levelA.pyebalance =
+      Number(levelA.pyebalance || 0)
       + commissionA;
 
     levelA.totalReferralCommission =
@@ -908,8 +908,8 @@ async (buyer, productPrice) => {
 
         });
 
-      levelB.pyeBalance =
-        Number(levelB.pyeBalance || 0)
+      levelB.pyebalance =
+        Number(levelB.pyebalance || 0)
         + commissionB;
 
       levelB.totalReferralCommission =
@@ -994,8 +994,8 @@ async (buyer, productPrice) => {
 
         });
 
-        levelC.pyeBalance =
-          Number(levelC.pyeBalance || 0)
+        levelC.pyebalance =
+          Number(levelC.pyebalance || 0)
           + commissionC;
 
         levelC.totalReferralCommission =
@@ -1229,8 +1229,8 @@ async (campaignId) => {
   const reward =
     Number(campaign.reward || 0);
 
-  user.pyeBalance =
-    Number(user.pyeBalance || 0)
+  user.pyebalance =
+    Number(user.pyebalance || 0)
     + reward;
 
   await updateUserEverywhere(user);

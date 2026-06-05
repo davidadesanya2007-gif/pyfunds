@@ -44,7 +44,7 @@ function Converter() {
       const pyeAmount = nairaValue / rate;
 
       user.balance -= nairaValue;
-      user.pyeBalance = (user.pyeBalance || 0) + pyeAmount;
+      user.pyebalance = (user.pyebalance || 0) + pyeAmount;
 
       // 🔥 SAVE EVERYWHERE
       await updateUserEverywhere(user);
@@ -70,14 +70,14 @@ function Converter() {
     // PYE → ₦
     if (pyeValue > 0) {
 
-      if (pyeValue > (user.pyeBalance || 0)) {
+      if (pyeValue > (user.pyebalance || 0)) {
         setAlert({ type:"error", message:"Insufficient PYE" });
         return;
       }
 
       const nairaAmount = pyeValue * rate;
 
-      user.pyeBalance -= pyeValue;
+      user.pyebalance -= pyeValue;
       user.balance = (user.balance || 0) + nairaAmount;
 
       // 🔥 SAVE EVERYWHERE

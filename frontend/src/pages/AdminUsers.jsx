@@ -126,7 +126,7 @@ function AdminUsers() {
                   <td style={styles.td}>{u.email}</td>
 
                   <td style={styles.td}>
-                    {Number(u.pyeBalance || 0)} PYE
+                    {Number(u.pyebalance || 0)} PYE
                   </td>
 
                   <td style={styles.td}>

@@ -99,12 +99,12 @@ function Investment() {
               />
 
               <div style={styles.infoRow}>
-                <span>📈 {item.percent}</span>
+                <span>{item.percent}%</span>
                 <span>⚡ {item.units} Units</span>
               </div>
 
               <p style={styles.text}>Valid: {item.days} Days</p>
-              <p style={styles.text}>Available Stock: {item.left}</p>
+              <p style={styles.text}>Quantity Left: {item.left}</p>
 
               <button
                 style={styles.button}

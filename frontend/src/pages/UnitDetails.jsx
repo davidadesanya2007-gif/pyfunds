@@ -39,7 +39,7 @@ function UnitDetails() {
   const handleBuyUnit = async () => {
 
     const user = await getUser();
-    const balance = user.pyeBalance || 0;
+    const balance = user.pyebalance || 0;
 
     if (balance < unit.price) {
       setAlert({ type:"error", message:"Insufficient PYE balance" });
@@ -47,7 +47,7 @@ function UnitDetails() {
     }
 
     // deduct balance
-    user.pyeBalance = balance - unit.price;
+    user.pyebalance = balance - unit.price;
 
     // add units to user
     user.units = Number(user.units || 0) + Number(unit.units || 0);

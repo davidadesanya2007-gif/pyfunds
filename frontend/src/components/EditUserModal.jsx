@@ -8,7 +8,7 @@ import { supabase } from "../supabase"; // 🔥 ADD THIS AT TOP
 
 function EditUserModal({ user, onClose, onSave }) {
 
-  const [balance, setBalance] = useState(user?.pyeBalance || 0);
+  const [balance, setBalance] = useState(user?.pyebalance || 0);
   const [addAmount, setAddAmount] = useState("");
   const [deductAmount, setDeductAmount] = useState("");
 
@@ -96,7 +96,7 @@ function EditUserModal({ user, onClose, onSave }) {
 
     const updatedUser = {
       ...user,
-      pyeBalance: balance,
+      pyebalance: balance,
       blocked: status === "Banned",
       active: status === "Active"
     };

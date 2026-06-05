@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CustomAlert from "../components/CustomAlert";
 import moneySound from "../assets/money.mp4";
+import Sidebar from "../components/Sidebar";
 import {
   getActiveInvestments,
   addActiveInvestment,
@@ -49,7 +50,7 @@ function ProductDetails() {
     if (!user) return;
 
     const balance =
-      Number(user.pyeBalance || 0);
+      Number(user.pyebalance || 0);
 
     if (balance < product.price) {
 
@@ -73,7 +74,7 @@ function ProductDetails() {
     }
 
     // DEDUCT BALANCE
-    user.pyeBalance =
+    user.pyebalance =
       balance - Number(product.price);
 
     await updateUserEverywhere(user);
@@ -146,6 +147,9 @@ function ProductDetails() {
 
   return (
     <div style={styles.page}>
+
+      <Sidebar />
+
       <div style={styles.container}>
 
         <img src={product.image} style={styles.image} />

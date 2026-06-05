@@ -131,7 +131,7 @@ function Dashboard() {
           }}>
             PYE Balance
           </h4>
-          <p style={styles.amount}>{Number(user?.pyeBalance || 0).toFixed(2)} PYE</p>
+          <p style={styles.amount}>{Number(user?.pyebalance || 0).toFixed(2)} PYE</p>
         </div>
 
         <div style={styles.card}>
@@ -172,7 +172,7 @@ function Dashboard() {
       <div style={styles.actions}>
 
         <button style={styles.btn1} onClick={() => navigate("/active")}>
-          Active Investments
+          My Ai-models
         </button>
 
         <button style={styles.btn2} onClick={() => navigate("/deposit")}>
