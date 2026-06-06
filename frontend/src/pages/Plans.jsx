@@ -98,13 +98,25 @@ function Investment() {
                 style={styles.imageBox}
               />
 
-              <div style={styles.infoRow}>
+             <div style={styles.infoRow}>
+                <span>ROI</span>
                 <span>{item.percent}%</span>
-                <span>⚡ {item.units} Units</span>
               </div>
 
-              <p style={styles.text}>Valid: {item.days} Days</p>
-              <p style={styles.text}>Quantity Left: {item.left}</p>
+              <div style={styles.infoRow}>
+                <span>UNIT</span>
+                <span>{item.units}</span>
+              </div>
+
+              <div style={styles.infoRow}>
+                <span>SPAN</span>
+                <span>{item.days}</span>
+              </div>
+
+              <div style={styles.infoRow}>
+                <span>REM</span>
+                <span>{item.left}</span>
+              </div>
 
               <button
                 style={styles.button}
@@ -198,8 +210,19 @@ const styles = {
   infoRow:{
     display:"flex",
     justifyContent:"space-between",
-    fontWeight:"bold"
+    fontSize:"12px",
+    padding:"3px 0",
+    alignItems:"center"
   },
+
+  /*infoRow:{
+    display:"flex",
+    flexDirection:"column",
+    alignItems:"flex-start",
+    gap:"2px",
+    fontSize:"12px",
+    marginBottom:"6px"
+  },*/
 
   text:{
     fontSize:"12px",

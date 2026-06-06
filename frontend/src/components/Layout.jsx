@@ -20,10 +20,13 @@ function Layout() {
 const styles = {
   page:{
     minHeight:"100vh",
+    display:"flex",
+    flexDirection:"column",
     color:"white"
   },
 
   content:{
+    flex:1,
     padding:"20px"
   }
 };

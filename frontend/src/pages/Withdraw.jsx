@@ -140,8 +140,8 @@ function Withdraw() {
       return;
     }
 
-    if (Number(amount) < 5000) {
-      setAlert({ type:"error", message:"Minimum withdrawal is ₦5000" });
+    if (Number(amount) < 3000) {
+      setAlert({ type:"error", message:"Minimum withdrawal is ₦3000" });
       return;
     }
 
@@ -284,6 +284,22 @@ function Withdraw() {
 
         </div>
 
+        <div style={styles.noticeBox}>
+
+          <h3>⚠️ WITHDRAWAL RULES</h3>
+
+          <p>1. Minimum withdrawal: ₦3,000</p>
+          <p>2. 8% fee is charged per withdrawal</p>
+          <p>3. Processing is manual (takes up to 24hrs)</p>
+          <p>4. Payments are processed between 10AM – 6PM</p>
+          <p>5. Bank arrival time depends on your bank</p>
+
+          <p style={{color:"red", fontWeight:"bold"}}>
+            ⚠️ Ensure correct bank details before withdrawal
+          </p>
+
+        </div>
+
       </div>
 
       {alert && (
@@ -335,6 +351,18 @@ const styles = {
     borderRadius:"10px",
     color:"#fff",
     cursor:"pointer"
+  },
+
+  noticeBox:{
+    background:"#fee2e2",
+    padding:"15px",
+    borderRadius:"10px",
+    marginTop:"40px",
+    marginBottom:"15px",
+    fontSize:"13px",
+    lineHeight:"1.6",
+    color:"#333",
+    border:"1px solid #fca5a5"
   }
 
 };

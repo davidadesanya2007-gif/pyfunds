@@ -43,11 +43,11 @@ function Home() {
     <div style={styles.container}>
 
       <h1 style={styles.title}>
-        Welcome to PYEFUNDS
+         PYEFUNDS
       </h1>
 
       <p style={styles.subtitle}>
-        A digital platform focused on creating opportunities for finicial growth through technology, comminity paticipation, and innovation digital products
+        A digital finacial empowerment platform designed to help members elevate their lives through smart earning opportunities, community growth, and sustainable wealth creation. Join us today and start your journey towards financial freedom!
       </p>
 
       <div style={styles.buttons}>
@@ -117,7 +117,7 @@ const styles = {
 
   title: {
     fontSize: "48px",
-    color: "#38bdf8",
+    color: "#000000",
     marginBottom: "20px",
   },
 
@@ -126,7 +126,7 @@ const styles = {
     maxWidth: "600px",
     margin: "0 auto",
     marginBottom: "40px",
-    color: "#f7f1f1",
+    color: "#e71add",
     fontWeight:"bold"
   },
 
@@ -153,10 +153,10 @@ const styles = {
     minWidth:"180px",
     padding:"14px 20px",
     fontSize:"16px",
-    background:"transparent",
+    background:"#38bdf8",
     border:"2px solid #38bdf8",
     borderRadius:"8px",
-    color:"#38bdf8",
+    color:"#000000",
     cursor:"pointer"
   },
 

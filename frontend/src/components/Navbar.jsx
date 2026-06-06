@@ -76,9 +76,26 @@ function Navbar() {
         {/* ✅ ALL OTHER PAGES (except admin) */}
         {!isLoginPage && !isRegisterPage && !isAdminPage && user && (
           <>
-            <button onClick={() => navigate("/")}>Home</button>
-            <button onClick={() => navigate("/plans")}>Plans</button>
-            <button onClick={handleLogout}>Logout</button>
+            <button
+              style={styles.homeBtn}
+              onClick={() => navigate("/")}
+            >
+              Home
+            </button>
+
+            <button
+              style={styles.plansBtn}
+              onClick={() => navigate("/plans")}
+            >
+              Plans
+            </button>
+
+            <button
+              style={styles.logoutBtn}
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
           </>
         )}
 
@@ -96,6 +113,39 @@ const styles = {
     background:"#020617",
     position:"relative",
     width:"100%"
+  },
+
+  homeBtn: {
+    width: "70px",
+    height: "34px",
+    fontSize: "12px",
+    borderRadius: "6px",
+    background: "#38bdf8", // bravo blue
+    color: "#fff",
+    fontWeight: "600",
+    border: "none"
+  },
+
+  plansBtn: {
+    width: "70px",
+    height: "34px",
+    fontSize: "12px",
+    borderRadius: "6px",
+    background: "#38bdf8", // bravo blue
+    color: "#fff",
+    fontWeight: "600",
+    border: "none"
+  },
+
+  logoutBtn: {
+    width: "70px",
+    height: "34px",
+    fontSize: "12px",
+    borderRadius: "6px",
+    background: "red",
+    color: "#fff",
+    fontWeight: "600",
+    border: "none"
   },
 
   links:{

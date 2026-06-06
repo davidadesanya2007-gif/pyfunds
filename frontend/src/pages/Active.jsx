@@ -132,67 +132,83 @@ function ActiveInvestments() {
   return (
     <div style={{ padding: "20px" }}>
 
-      <h2>Active Investments</h2>
+      <h2>Ai-Models</h2>
 
       {loading ? (
-        <p>Loading...</p>
+        <div style={styles.loadingWrapper}>
+          <div style={styles.spinner}></div>
+          <p style={{ marginTop: "10px", color: "#fff" }}>Loading Ai-Models...</p>
+        </div>
       ) : investments.length === 0 ? (
-        <p>No active investment yet</p>
+        <p>No Ai-Models yet</p>
       ) : null}
 
       {/* GRID START */}
       <div style={styles.grid}>
 
-        {investments.map((item) => (
+        {investments.map((item) => {
 
-          <div key={item.id} style={styles.card}>
+          const today = new Date().toDateString();
 
-            <img src={item.image} style={styles.image} />
+          const lastClaimDate = item.lastClaim
+            ? new Date(item.lastClaim).toDateString()
+            : null;
 
-            <h3 style={{ fontSize: "13px", margin: "0" }}>
-              {item.name}
-            </h3>
+          const isClaimed = lastClaimDate === today;
 
-            {/* 2 COLUMN TEXT */}
-            <div style={styles.infoRow}>
-              <span>Daily:</span>
-              <span>{item.dailyEarning} PYE</span>
+          return (
+            <div key={item.id} style={styles.card}>
+
+              <img src={item.image} style={styles.image} />
+
+              <h3 style={{ fontSize: "13px", margin: "0" }}>
+                {item.name}
+              </h3>
+
+              <div style={styles.infoRow}>
+                <span>DAILY:</span>
+                <span>{item.dailyEarning} PYE</span>
+              </div>
+
+              <div style={styles.infoRow}>
+                <span>CAPITAL:</span>
+                <span>{item.price} PYE</span>
+              </div>
+
+              <div style={styles.infoRow}>
+                <span>CLAIMED:</span>
+                <span>{item.earnings || 0} PYE</span>
+              </div>
+
+              {item.type === "limited" && (
+                <>
+                  <div style={styles.infoRow}>
+                    <span>REM:</span>
+                    <span>{item.daysLeft}</span>
+                  </div>
+
+                  <div style={styles.infoRow}>
+                    <span>UNIT:</span>
+                    <span>{item.unitsLeft}</span>
+                  </div>
+                </>
+              )}
+
+              <button
+                style={{
+                  ...styles.button,
+                  background: isClaimed ? "green" : "#c8a96a",
+                  cursor: isClaimed ? "not-allowed" : "pointer"
+                }}
+                onClick={() => !isClaimed && handleClaim(item.id)}
+                disabled={isClaimed}
+              >
+                {isClaimed ? "Claimed" : "Claim Earnings"}
+              </button>
+
             </div>
-
-            <div style={styles.infoRow}>
-              <span>Invested:</span>
-              <span>{item.price} PYE</span>
-            </div>
-
-            <div style={styles.infoRow}>
-              <span>Earned:</span>
-              <span>{item.earnings || 0} PYE</span>
-            </div>
-
-            {item.type === "limited" && (
-              <>
-                <div style={styles.infoRow}>
-                  <span>Days:</span>
-                  <span>{item.daysLeft}</span>
-                </div>
-
-                <div style={styles.infoRow}>
-                  <span>Units:</span>
-                  <span>{item.unitsLeft}</span>
-                </div>
-              </>
-            )}
-
-            <button
-              style={styles.button}
-              onClick={() => handleClaim(item.id)}
-            >
-              Claim Daily Earnings
-            </button>
-
-          </div>
-
-        ))}
+          );
+        })}
 
       </div>
 
@@ -220,6 +236,23 @@ const styles = {
     marginTop:"15px"
   },
 
+  loadingWrapper: {
+    minHeight: "60vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  spinner: {
+    width: "60px",
+    height: "60px",
+    border: "6px solid #1e293b",
+    borderTop: "6px solid #38bdf8",
+    borderRadius: "50%",
+    animation: "spin 1s linear infinite"
+  },
+
   infoRow:{
     display:"flex",
     justifyContent:"space-between",
@@ -236,7 +269,7 @@ const styles = {
     fontSize:"12px",
     display:"flex",
     flexDirection:"column",
-    gap:"6px",
+    /*gap:"6px",*/
     color:"#222"
   },
 

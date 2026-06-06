@@ -51,6 +51,25 @@ function Deposit() {
           Deposit ₦
         </button>
 
+        <div style={styles.noticeBox}>
+
+          <h3>⚠️ IMPORTANT DEPOSIT NOTICE</h3>
+
+          <p>Minimum deposit is ₦5,000</p>
+
+          <p>1. Use ONLY official bank details provided.</p>
+          <p>2. Every transaction must have unique narration.</p>
+          <p>3. You MUST input correct narration to avoid failure.</p>
+          <p>4. Click "I’VE MADE THE TRANSFER" after payment.</p>
+          <p>5. Upload payment receipt screenshot.</p>
+          <p>6. The system will verify your payment within 24 hours, please be patient.</p>
+
+          <p style={{color:"red", fontWeight:"bold"}}>
+            ⚠️ Fake transactions will result in immediate account ban
+          </p>
+
+        </div>
+
       </div>
 
       {alert && (
@@ -81,6 +100,18 @@ const styles = {
     border:"none",
     borderRadius:"10px",
     cursor:"pointer"
+  },
+
+  noticeBox:{
+    background:"#fff3cd",
+    padding:"15px",
+    borderRadius:"10px",
+    marginBottom:"15px",
+    marginTop:"40px",
+    fontSize:"13px",
+    lineHeight:"1.6",
+    color:"#333",
+    border:"1px solid #ffeeba"
   }
 };
 

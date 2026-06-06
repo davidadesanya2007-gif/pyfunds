@@ -981,6 +981,8 @@ const styles = {
 
     border:"none",
 
+    width:"40%",
+
     borderRadius:"14px",
 
     color:"white",

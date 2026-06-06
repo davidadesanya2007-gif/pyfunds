@@ -98,9 +98,14 @@ function Referral() {
               Referral Dashboard
             </h1>
 
+            <h1 style={styles.subtitle}>
+              Invite friends, earn rewards
+            </h1>
+
             <p style={styles.sub}>
-              Invite friends and earn commissions
+              Earn referral commissions by inviting others to join PYEFUNDS using your unique referral link. 
             </p>
+            <p style={styles.strong}><strong>SHARE YOUR LINK</strong></p>
           </div>
 
         </div>
@@ -344,12 +349,24 @@ function Referral() {
 const styles = {
 
   container: {
-    padding: "40px"
+    padding: "0px"
   },
 
   title: {
     marginBottom: "30px",
     color: "white"
+  },
+
+  subtitle:{
+    color:"#d4e633",
+    fontSize:"30px",
+    fontWeight:"700"
+  },
+
+  strong:{
+    color:"#38bdf8",
+    fontSize:"18px",
+    marginTop:"10px"
   },
 
   card: {
@@ -376,8 +393,7 @@ const styles = {
   },
 
   copyBtn:{
-    width:"90px",
-    minWidth:"90px",
+    width:"40%",
     height:"42px",
     background:"#38bdf8",
     border:"none",
@@ -409,7 +425,9 @@ const styles = {
   },
 
   sub:{
-    color:"#64748b",
+    color:"#000000",
+    fontSize:"30px",
+    fontWeight:"500",
     marginTop:"5px"
   },
 
@@ -479,7 +497,7 @@ const styles = {
     width:"100%",
     background:"linear-gradient(145deg,#071120,#0f172a)",
     borderCollapse:"separate",
-    borderSpacing:"0 10px",
+    borderSpacing:"0px 10px",
     color:"white"
   },
 

@@ -102,7 +102,7 @@ function Dashboard() {
       <div style={styles.welcomeBox}>
 
         <h2 style={styles.title}>
-          {greeting} {user?.name || "email"} 👋
+          {greeting}, {user?.name || "email"} 
         </h2>
 
         <p style={styles.subtitle}>
@@ -207,7 +207,7 @@ const styles = {
     width: "100%",
     minHeight: "220px",
     background:
-      "url('/src/assets/images/icons/Product1.jpeg') center/cover",
+      "url('/src/assets/images/icons/Banner.jpeg') center/cover",
     borderRadius: "22px",
     display: "flex",
     alignItems: "flex-end",
@@ -393,7 +393,7 @@ const styles = {
 
   banner: {
     height: "200px",
-    background: "url('/src/assets/images/icons/Product1.jpeg') center/cover",
+    background: "url('/src/assets/images/icons/Banner.jpeg') center/cover",
     borderRadius: "10px",
     display: "flex",
     alignItems: "flex-end",

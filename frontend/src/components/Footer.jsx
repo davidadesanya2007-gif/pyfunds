@@ -1,8 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
+
 function Footer() 
   { return ( 
     <footer style={styles.footer}> 
         <p>
-          © 2026 PYEFUNDS. All rights   reserved.
+          © 2026 PYEFUNDS. All rights reserved.
         </p> 
     </footer>
   );
@@ -14,7 +16,6 @@ const styles = {
     padding: "20px",
     background: "#020617",
     color: "white",
-    marginTop: "auto"   // ✅ important fix
   },
 };
 

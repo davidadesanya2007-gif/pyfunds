@@ -293,6 +293,7 @@ const styles = {
   graphBtn:{
     padding:"12px",
     background:"#22c55e",
+    width:"120px",
     border:"none",
     borderRadius:"6px",
     cursor:"pointer",

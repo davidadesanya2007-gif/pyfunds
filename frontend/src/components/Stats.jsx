@@ -8,12 +8,12 @@ function Stats() {
       </div>
 
       <div style={styles.statBox}>
-        <h2>$2M+</h2>
+        <h2>₦2M+</h2>
         <p>Total Invested</p>
       </div>
 
       <div style={styles.statBox}>
-        <h2>$1.4M+</h2>
+        <h2>₦1.4M+</h2>
         <p>Total Withdrawn</p>
       </div>
 

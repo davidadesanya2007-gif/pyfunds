@@ -183,7 +183,7 @@ function ProductDetails() {
 
         {product.type === "limited" && (
           <p style={{ color: "orange" }}>
-            Comes with 3 units. Buy more units after usage.
+            Comes with {product.units} units. Buy more units after usage.
           </p>
         )}
 

@@ -200,7 +200,7 @@ const styles = {
 
   sidebar:{
     position:"fixed",
-    top:"70px",
+    top:"0px",
     left:"5px",
 
     width:"280px",
