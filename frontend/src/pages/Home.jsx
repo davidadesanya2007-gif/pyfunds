@@ -41,13 +41,10 @@ function Home() {
       <div style={{padding:"40px"}}></div>
 
     <div style={styles.container}>
-
-      <h1 style={styles.title}>
-         PYEFUNDS
-      </h1>
+      <h1 style={styles.title}>PYEFUNDS</h1>
 
       <p style={styles.subtitle}>
-        A digital finacial empowerment platform designed to help members elevate their lives through smart earning opportunities, community growth, and sustainable wealth creation. Join us today and start your journey towards financial freedom!
+        A digital earning platform focused on helping users grow their finances through AI-powered energy models.
       </p>
 
       <div style={styles.buttons}>
@@ -126,7 +123,7 @@ const styles = {
     maxWidth: "600px",
     margin: "0 auto",
     marginBottom: "40px",
-    color: "#e71add",
+    color: "#ffffff",
     fontWeight:"bold"
   },
 

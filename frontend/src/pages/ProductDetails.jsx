@@ -140,7 +140,7 @@ function ProductDetails() {
 
     setAlert({
       type:"success",
-      message:"Model Purchased Successfully ✅"
+      message:`Model Purchased Successfully ✅, -${product.price} PYE deducted`
     });
 
   };

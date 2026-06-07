@@ -130,7 +130,7 @@ function ActiveInvestments() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "0px" }}>
 
       <h2>Ai-Models</h2>
 
@@ -161,7 +161,7 @@ function ActiveInvestments() {
 
               <img src={item.image} style={styles.image} />
 
-              <h3 style={{ fontSize: "13px", margin: "0" }}>
+              <h3 style={styles.cardTitle}>
                 {item.name}
               </h3>
 
@@ -233,7 +233,8 @@ const styles = {
     display:"grid",
     gridTemplateColumns:"repeat(2, minmax(0, 1fr))",
     gap:"10px",
-    marginTop:"15px"
+    marginTop:"15px",
+    alignItems:"stretch" //makes all cards the same height
   },
 
   loadingWrapper: {
@@ -253,35 +254,60 @@ const styles = {
     animation: "spin 1s linear infinite"
   },
 
-  infoRow:{
+  /*infoRow:{
     display:"flex",
     justifyContent:"space-between",
     fontSize:"12px",
     padding:"4px 0",
     alignItems:"center"
+  },*/
+
+  infoRow:{
+    display:"flex",
+    justifyContent:"space-between",
+    fontSize:"12px",
+    padding:"4px 0",
+    alignItems:"center",
+    whiteSpace:"nowrap", // stop text from breaking into multiple lines
+    color:"#222"
   },
 
   card:{
-    background:"#fff",
-    padding:"10px",
+    background:"#ffffff",
+    padding:"0px",
     borderRadius:"12px",
     boxShadow:"0 4px 8px rgba(0,0,0,0.05)",
     fontSize:"12px",
     display:"flex",
     flexDirection:"column",
-    /*gap:"6px",*/
+    height:"100%",
     color:"#222"
   },
+
+  cardTitle: {
+    fontSize: "13px",
+    margin: "0 0 8px 0",
+    minHeight: "32px", // ~ 2 lines on mobile
+    WebkitLineClamp: 2, // limit to 2 lines
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+    wordBreak: "break-word", // break long words WNeural
+    lineHeight: "16px",
+    color: "#222"
+  },
+
+  
 
   image:{
     width:"100%",
     height:"110px",
     objectFit:"cover",
-    borderRadius:"8px"
+    borderRadius:"8px",
+    marginBottom:"8px"
   },
 
   button: {
-    marginTop: "10px",
+    marginTop: "auto", // push button to bottom
     width: "100%",
     padding: "10px",
     background: "#c8a96a",

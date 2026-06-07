@@ -68,7 +68,7 @@ function UnitDetails() {
 
     setAlert({
       type:"success",
-      message:`${unit.units} Unit purchased ✅`
+      message:`${unit.units} Unit purchased ✅, -${unit.price} PYE deducted`
     });
   };
 
