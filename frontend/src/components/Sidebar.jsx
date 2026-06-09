@@ -43,7 +43,7 @@ function Sidebar() {
 
             {/* LOGO */}
             <h2 style={styles.logo}>
-              PYFUNDS
+              PYEFUNDS
             </h2>
 
             {/* LINKS */}
@@ -201,7 +201,7 @@ const styles = {
   sidebar:{
     position:"fixed",
     top:"0px",
-    left:"5px",
+    left:"0px",
 
     width:"280px",
     maxWidth:"85%",

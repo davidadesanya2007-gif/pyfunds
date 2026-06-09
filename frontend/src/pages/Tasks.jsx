@@ -39,7 +39,7 @@ function Tasks() {
       <div style={styles.container}>
 
         <h1 style={styles.title}>
-          ACTIVE CAMPAIGNS
+          ACTIVE MANAGERS
         </h1>
 
         {currentUser && (
@@ -127,7 +127,7 @@ function Tasks() {
 
         {campaigns.length === 0 && (
           <p style={{color:"#94a3b8"}}>
-            No Campaigns Available
+            No Managers Available
           </p>
         )}
 

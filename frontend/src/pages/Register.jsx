@@ -360,7 +360,7 @@ function Register() {
             phase,
 
             pyebalance: 0,
-            balance: 2000,
+            balance: 0,
 
             referralCommission: 0,
             totalReferralCommission: 0,
@@ -645,7 +645,7 @@ function Register() {
 
         <input
           type="text"
-          placeholder="Full Name"
+          placeholder="Name"
           style={styles.input}
           value={name}
           onChange={(e) => setName(e.target.value)}

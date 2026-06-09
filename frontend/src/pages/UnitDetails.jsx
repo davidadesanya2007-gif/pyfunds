@@ -121,8 +121,6 @@ function UnitDetails() {
 
           <p><b>Status:</b> Active</p>
           <p><b>Usage:</b> Boost daily earnings</p>
-          <p><b>Conversion:</b> 1 Unit = +1 PYE daily earning</p>
-          <p><b>Description:</b> {unit.description}</p>
 
         </div>
 

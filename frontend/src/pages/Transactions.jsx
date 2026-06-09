@@ -159,6 +159,9 @@ const styles = {
   card:{
     width:"100%",
     background:"#fff",
+    color:"#1e293b",
+    fontSize:"16px",
+    fontWeight:"700",
     padding:"20px",
     borderRadius:"14px",
     marginTop:"15px",

@@ -12,11 +12,11 @@ function Support() {
 
           <h2>WhatsApp Support Groups</h2>
 
-          <p>Select your phase to join support group</p>
+          <p>Join our support groups for assistance</p>
 
           {/* PHASE 1 */}
           <div style={styles.groupCard}>
-            <h3>PYEFUNDS - PHASE 1</h3>
+            <h3>PYEFUNDS OFFICIAL COMMUNITY</h3>
             <button
               style={styles.button}
               onClick={() =>
@@ -28,7 +28,7 @@ function Support() {
           </div>
 
           {/* PHASE 2 */}
-          <div style={styles.groupCard}>
+          {/* <div style={styles.groupCard}>
             <h3>PYEFUNDS - PHASE 2</h3>
             <button
               style={styles.button}
@@ -38,10 +38,10 @@ function Support() {
             >
               Join Group
             </button>
-          </div>
+          </div>*/}
 
           {/* PHASE 3 */}
-          <div style={styles.groupCard}>
+          {/* <div style={styles.groupCard}>
             <h3>PYEFUNDS - PHASE 3</h3>
             <button
               style={styles.button}
@@ -51,7 +51,7 @@ function Support() {
             >
               Join Group
             </button>
-          </div>
+          </div>*/}
 
         </div>
 

@@ -101,9 +101,9 @@ function DepositProof() {
 
           <p><b>Bank Name:</b> OPAY</p>
 
-          <p><b>Account Name:</b> PYFUNDS LIMITED</p>
+          <p><b>Account Name:</b> DAVID TUNMISHE ADESANYA</p>
 
-          <p><b>Account Number:</b> 9038473829</p>
+          <p><b>Account Number:</b> 6441098762</p>
 
         </div>
 

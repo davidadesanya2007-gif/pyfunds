@@ -8,12 +8,12 @@ export const managers = {
         "https://wa.me/234..."
     },
 
-    {
+    /*{
       name:"Manager Sarah",
       whatsapp:
         "https://wa.me/234..."
     }
-
+    */
   ],
 
   phase2:[
@@ -24,11 +24,12 @@ export const managers = {
         "https://wa.me/234..."
     },
 
-    {
+    /*{
       name:"Manager Kelvin",
       whatsapp:
         "https://wa.me/234..."
     }
+    */
 
   ],
 
@@ -40,11 +41,12 @@ export const managers = {
         "https://wa.me/234..."
     },
 
-    {
+    /*{
       name:"Manager Michael",
       whatsapp:
         "https://wa.me/234..."
     }
+    */
 
   ]
 

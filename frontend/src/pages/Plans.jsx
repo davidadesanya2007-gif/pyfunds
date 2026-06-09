@@ -9,6 +9,7 @@ function Investment() {
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState("sneakers");
+  const [loading, setLoading] = useState(true);
 
   const [products, setProducts] = useState([]);
 
@@ -18,16 +19,15 @@ function Investment() {
 
     const fetchData = async () => {
 
-      const storedProducts =
-        await getProducts();
+      setLoading(true);
 
+      const storedProducts = await getProducts();
       setProducts(storedProducts || []);
 
-      const storedUnits =
-        await getUnits();
-
+      const storedUnits = await getUnits();
       setUnits(storedUnits || []);
 
+      setLoading(false);
     };
 
     fetchData();
@@ -51,96 +51,100 @@ function Investment() {
 
       <div style={styles.container}>
 
-        <h1 style={{color:"white"}}>Energy Schemes</h1>
+        <h1 style={{ color: "white" }}>Energy Schemes</h1>
 
-        {/* TABS */}
-        <div style={styles.tabs}>
-
-          <button
-            style={activeTab === "sneakers" ? styles.activeTab : styles.tab}
-            onClick={() => setActiveTab("sneakers")}
-          >
-            👟 AI MODELS
-          </button>
-
-          <button
-            style={activeTab === "energy" ? styles.activeTab : styles.tab}
-            onClick={() => setActiveTab("energy")}
-          >
-            ⚡ UNITS
-          </button>
-
-        </div>
-
-        {/* PRODUCTS */}
-        <div style={styles.grid}>
-
-          {displayProducts.map((item) => (
-
-            <div
-              key={item.id} 
-              style={styles.card}
-              
-            >
-
-              <h3
-                style={{
-                  fontSize:"14px",
-                  marginBottom:"5px"
-                }}
-              >
-                {item.name}
-              </h3>
-
-              <img
-                src={item.image}
-                alt={item.name}
-                style={styles.imageBox}
-              />
-
-             <div style={styles.infoRow}>
-                <span>ROI</span>
-                <span>{item.percent}%</span>
-              </div>
-
-              <div style={styles.infoRow}>
-                <span>UNIT</span>
-                <span>{item.units}</span>
-              </div>
-
-              <div style={styles.infoRow}>
-                <span>SPAN</span>
-                <span>{item.days}</span>
-              </div>
-
-              <div style={styles.infoRow}>
-                <span>REM</span>
-                <span>{item.left}</span>
-              </div>
+        {loading ? (
+          <div style={styles.loadingWrapper}>
+            <div style={styles.spinner}></div>
+            <p style={{ color: "white", marginTop: "10px" }}>
+              Loading Models...
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* TABS */}
+            <div style={styles.tabs}>
 
               <button
-                style={styles.button}
-                onClick={(e) => {
-                  e.stopPropagation();
-
-                  if (activeTab === "energy") {
-                    navigate(`/unit/${item.id}`);
-                  } else {
-                    navigate(`/product/${item.id}`);
-                  }
-                }}
+                style={activeTab === "sneakers" ? styles.activeTab : styles.tab}
+                onClick={() => setActiveTab("sneakers")}
               >
-                {item.price} PYE
+                👟 AI MODELS
+              </button>
+
+              <button
+                style={activeTab === "energy" ? styles.activeTab : styles.tab}
+                onClick={() => setActiveTab("energy")}
+              >
+                ⚡ UNITS
               </button>
 
             </div>
 
-          ))}
+            {/* PRODUCTS */}
+            <div style={styles.grid}>
 
-        </div>
+              {displayProducts.map((item) => (
+
+                <div
+                  key={item.id}
+                  style={styles.card}
+                >
+
+                  <h3 style={{ fontSize: "14px", marginBottom: "5px" }}>
+                    {item.name}
+                  </h3>
+
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={styles.imageBox}
+                  />
+
+                  <div style={styles.infoRow}>
+                    <span>ROI</span>
+                    <span>{item.percent}%</span>
+                  </div>
+
+                  <div style={styles.infoRow}>
+                    <span>UNIT</span>
+                    <span>{item.units}</span>
+                  </div>
+
+                  <div style={styles.infoRow}>
+                    <span>SPAN</span>
+                    <span>{item.days}</span>
+                  </div>
+
+                  <div style={styles.infoRow}>
+                    <span>REM</span>
+                    <span>{item.left}</span>
+                  </div>
+
+                  <button
+                    style={styles.button}
+                    onClick={(e) => {
+                      e.stopPropagation();
+
+                      if (activeTab === "energy") {
+                        navigate(`/unit/${item.id}`);
+                      } else {
+                        navigate(`/product/${item.id}`);
+                      }
+                    }}
+                  >
+                    {item.price} PYE
+                  </button>
+
+                </div>
+
+              ))}
+
+            </div>
+          </>
+        )}
 
       </div>
-
     </div>
   );
 }
@@ -161,6 +165,23 @@ const styles = {
     display:"flex",
     gap:"10px",
     marginTop:"20px"
+  },
+
+  loadingWrapper: {
+    minHeight: "60vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  spinner: {
+    width: "60px",
+    height: "60px",
+    border: "6px solid #1e293b",
+    borderTop: "6px solid #38bdf8",
+    borderRadius: "50%",
+    animation: "spin 1s linear infinite"
   },
 
   tab:{

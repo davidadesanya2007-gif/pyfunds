@@ -15,6 +15,7 @@ import {
 
 function Referral() {
 
+  const [search, setSearch] = useState("");
   const [user, setUserState] = useState({});
   const [alert, setAlert] = useState(null);
 
@@ -246,22 +247,23 @@ function Referral() {
             <FaSearch color="#64748b" />
 
             <input
-              placeholder="Search referrals..."
+              placeholder="Search referrals by email..."
               style={styles.searchInput}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
 
           </div>
 
           {/* TABLE */}
-          <div style={{overflowX:"auto"}}>
-
+          <div style={styles.tableWrapper}>
             <table style={styles.table}>
 
               <thead>
 
                 <tr>
                   <th>#</th>
-                  <th>User ID</th>
+                  <th>Email</th>
                   <th>Status</th>
                   <th>Commission</th>
                 </tr>
@@ -280,7 +282,13 @@ function Referral() {
 
                 ) : (
 
-                  referrals.map((ref, index) => (
+                  referrals
+                    .filter((ref) =>
+                      (ref.email || "")
+                        .toLowerCase()
+                        .includes(search.toLowerCase())
+                    )
+                    .map((ref, index) => (
 
                     <tr
                       key={index}
@@ -294,7 +302,7 @@ function Referral() {
                       </td>
 
                       <td style={{padding:"15px"}}>
-                        {ref.id}
+                        {ref.email || "No email"}
                       </td>
 
                       <td>
@@ -424,6 +432,13 @@ const styles = {
     marginBottom:"30px"
   },
 
+  tableWrapper: {
+    width: "100%",
+    overflowX: "auto",
+    overflowY: "hidden",
+    borderRadius: "12px",
+  },
+
   sub:{
     color:"#000000",
     fontSize:"30px",
@@ -495,6 +510,7 @@ const styles = {
 
   table:{
     width:"100%",
+    minWidth:"600px",
     background:"linear-gradient(145deg,#071120,#0f172a)",
     borderCollapse:"separate",
     borderSpacing:"0px 10px",

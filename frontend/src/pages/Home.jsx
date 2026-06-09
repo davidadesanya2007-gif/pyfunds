@@ -38,7 +38,7 @@ function Home() {
 
       <Sidebar />
 
-      <div style={{padding:"40px"}}></div>
+      <div></div>
 
     <div style={styles.container}>
       <h1 style={styles.title}>PYEFUNDS</h1>

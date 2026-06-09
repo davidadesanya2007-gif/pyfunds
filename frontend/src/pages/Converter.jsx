@@ -119,7 +119,7 @@ function Converter() {
 
         <h2>Converter</h2>
 
-        <p>Rate: 1 PYE = ₦{rate}</p>
+        <p style={{fontWeight:"700", fontSize:"20px"}}>Rate: 1 PYE = ₦{rate}</p>
 
         <input
           type="number"

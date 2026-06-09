@@ -39,6 +39,17 @@ function ProductDetails() {
 );
 
   // ✅ PREVENT CRASH
+  if (loading) {
+    return (
+      <div style={styles.loadingWrapper}>
+        <div style={styles.spinner}></div>
+        <p style={{ color: "white", marginTop: "10px" }}>
+          Loading Product...
+        </p>
+      </div>
+    );
+  }
+
   if (!product) {
     return <h2 style={{ color: "white" }}>Product not found</h2>;
   }
@@ -224,6 +235,23 @@ const styles = {
     background:"#c8a96a", border:"none",
     borderRadius:"25px", fontWeight:"bold",
     fontSize:"16px", cursor:"pointer"
+  },
+
+  loadingWrapper: {
+    minHeight: "60vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  spinner: {
+    width: "60px",
+    height: "60px",
+    border: "6px solid #1e293b",
+    borderTop: "6px solid #38bdf8",
+    borderRadius: "50%",
+    animation: "spin 1s linear infinite"
   }
 };
 

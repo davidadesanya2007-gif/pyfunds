@@ -125,14 +125,22 @@ function ActiveInvestments() {
       message: `Earned ${data.earning} PYE ✅`
     });
 
-    const refreshed = await getActiveInvestments();
-    setInvestments(refreshed);
+    setInvestments((prev) =>
+      prev.map((inv) =>
+        inv.id === id
+          ? {
+              ...inv,
+              lastClaim: new Date().toISOString(),
+            }
+          : inv
+      )
+    );
   };
 
   return (
     <div style={{ padding: "0px" }}>
 
-      <h2>Ai-Models</h2>
+      <h2>My Ai-Models</h2>
 
       {loading ? (
         <div style={styles.loadingWrapper}>
@@ -148,13 +156,16 @@ function ActiveInvestments() {
 
         {investments.map((item) => {
 
-          const today = new Date().toDateString();
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
 
-          const lastClaimDate = item.lastClaim
-            ? new Date(item.lastClaim).toDateString()
+          const lastClaim = item.lastClaim
+            ? new Date(item.lastClaim)
             : null;
 
-          const isClaimed = lastClaimDate === today;
+          if (lastClaim) lastClaim.setHours(0, 0, 0, 0);
+
+          const isClaimed = lastClaim && lastClaim.getTime() === today.getTime();
 
           return (
             <div key={item.id} style={styles.card}>
@@ -177,19 +188,19 @@ function ActiveInvestments() {
 
               <div style={styles.infoRow}>
                 <span>CLAIMED:</span>
-                <span>{item.earnings || 0} PYE</span>
+              <span>{item.earnings || 0} PYE</span>
               </div>
 
               {item.type === "limited" && (
                 <>
                   <div style={styles.infoRow}>
                     <span>REM:</span>
-                    <span>{item.daysLeft}</span>
+                    <span>{item.daysLeft} days</span>
                   </div>
 
                   <div style={styles.infoRow}>
                     <span>UNIT:</span>
-                    <span>{item.unitsLeft}</span>
+                    <span>{item.unitsLeft} units</span>
                   </div>
                 </>
               )}
@@ -276,6 +287,7 @@ const styles = {
     background:"#ffffff",
     padding:"0px",
     borderRadius:"12px",
+    border:"4px solid #e7c8c8",
     boxShadow:"0 4px 8px rgba(0,0,0,0.05)",
     fontSize:"12px",
     display:"flex",

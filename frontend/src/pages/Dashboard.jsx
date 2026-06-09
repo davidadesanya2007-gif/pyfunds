@@ -106,7 +106,7 @@ function Dashboard() {
         </h2>
 
         <p style={styles.subtitle}>
-          Welcome back to PYFUNDS Premium Dashboard
+          Welcome back to PYEFUNDS Premium Dashboard
         </p>
 
       </div>

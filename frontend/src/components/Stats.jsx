@@ -3,18 +3,18 @@ function Stats() {
     <div style={styles.container}>
 
       <div style={styles.statBox}>
-        <h2>15K+</h2>
-        <p>Total Investors</p>
+        <h2>5k</h2>
+        <p>Total User's</p>
       </div>
 
       <div style={styles.statBox}>
-        <h2>₦2M+</h2>
-        <p>Total Invested</p>
+        <h2>11</h2>
+        <p>Total Ai Models</p>
       </div>
 
       <div style={styles.statBox}>
-        <h2>₦1.4M+</h2>
-        <p>Total Withdrawn</p>
+        <h2>4%</h2>
+        <p>Minimum Investment Return</p>
       </div>
 
       <div style={styles.statBox}>
