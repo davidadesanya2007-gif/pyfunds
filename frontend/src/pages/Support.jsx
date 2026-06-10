@@ -20,7 +20,7 @@ function Support() {
             <button
               style={styles.button}
               onClick={() =>
-                window.open("https://chat.whatsapp.com/YOUR_PHASE_1_LINK", "_blank")
+                window.open("https://chat.whatsapp.com/LaRbZbhtnrSDbVWF2ZtV6P", "_blank")
               }
             >
               Join Group
