@@ -440,9 +440,9 @@ const styles = {
   },
 
   sub:{
-    color:"#000000",
+    color:"#ffff",
     fontSize:"30px",
-    fontWeight:"500",
+    fontWeight:"700",
     marginTop:"5px"
   },
 

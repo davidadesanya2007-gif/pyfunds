@@ -114,7 +114,11 @@ const styles = {
 
   title: {
     fontSize: "48px",
-    color: "#000000",
+    color: "#FFD700",
+    textShadow:`
+    0 0 5px #FFD700,
+    0 0 10px #FFD700,
+    0 0 20px #FFD700`,
     marginBottom: "20px",
   },
 
