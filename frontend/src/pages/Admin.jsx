@@ -13,31 +13,40 @@ function Admin() {
   const [users, setUsers] = useState([]);
   const [transactions, setTx] = useState([]);
   const [investments, setInvestments] = useState([]);
-  const [sidebarOpen, setSidebarOpen] = 
-  useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
 
-      const fetchData = async () => {
+    const fetchData = async () => {
 
-        const usersData =
-          await getAllUsers();
+      const usersData =
+        await getAllUsers();
 
-        const txData =
-          await getTransactions();
+      const txData =
+        await getTransactions();
 
-        const investmentData =
-          await getActiveInvestments() || [];
+      const investmentData =
+        await getActiveInvestments();
 
-        setUsers(usersData || []);
-        setTx(txData || []);
-        setInvestments(investmentData || []);
+      console.log("INVESTMENTS:", investmentData);
 
-      };
+      setUsers(usersData || []);
+      setTx(txData || []);
+      setInvestments(investmentData || []);
 
+    };
+
+    // first load
+    fetchData();
+
+    // auto refresh every 5 seconds
+    const interval = setInterval(() => {
       fetchData();
+    }, 5000);
 
-    }, []);
+    return () => clearInterval(interval);
+
+  }, []);
 
   // ✅ TOTAL DEPOSITS
   const totalDeposits = transactions
@@ -209,7 +218,9 @@ function Admin() {
 
           <div style={styles.cardGlow}>
             <p>Active AI Models</p>
-            <h2>{investments.length}</h2>
+            <h2>
+              {Array.isArray(investments) ? investments.length : 0}
+            </h2>
           </div>
         </div>
 

@@ -412,6 +412,9 @@ const styles = {
   modal:{
     width:"95%",
     maxWidth:"900px",
+    maxHeight:"90vh",
+    overflowY:"auto",
+
     background:"linear-gradient(145deg,#020617,#020617)",
     border:"1px solid #0ea5e9",
     borderRadius:"14px",
@@ -461,6 +464,15 @@ const styles = {
     padding:"15px",
     borderRadius:"10px",
     backdropFilter:"blur(10px)"
+  },
+
+  contentArea:{
+    maxHeight:"55vh",
+    overflowY:"auto",
+    display:"grid",
+    gridTemplateColumns:"repeat(auto-fit,minmax(250px,1fr))",
+    gap:"15px",
+    paddingRight:"5px"
   },
 
   machineContainer:{
